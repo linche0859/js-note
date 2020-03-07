@@ -24,7 +24,7 @@ module.exports = {
     // 導航欄配置
     nav: [
       // 內部鏈接 以 docs 為根目錄
-      { text: 'GitHub', link: 'https://github.com/linche0859/VuePress' }, // 外部鏈接
+      { text: 'GitHub', link: 'https://github.com/linche0859/js-note' }, // 外部鏈接
     ],
     // 側邊欄配置
     sidebar: [

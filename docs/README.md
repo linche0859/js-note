@@ -1,1 +1,1 @@
-- [屬性的特徵](/Property/README.md)
+- [屬性的特徵](/Property/expansion.md)
