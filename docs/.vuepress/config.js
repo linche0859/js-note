@@ -31,7 +31,7 @@ module.exports = {
       {
         title: '屬性的特徵',
         // collapsable: true,
-        children: ['/Property/expansion', '/Property/enumerate'],
+        children: ['/Property/expansion', '/Property/getter-setter'],
       },
     ],
   },
