@@ -33,6 +33,14 @@ module.exports = {
         // collapsable: true,
         children: ['/Property/expansion', '/Property/getter-setter'],
       },
+      {
+        title: '箭頭函示',
+        children: ['/Arrow/compare'],
+      },
+      {
+        title: 'Template Literals',
+        children: ['/Template/literals'],
+      },
     ],
   },
 };
