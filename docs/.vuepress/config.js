@@ -6,13 +6,13 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        '@image': '/images',
-      },
-    },
+        '@image': '/images'
+      }
+    }
   },
   markdown: {
     // 代碼塊顯示行號
-    lineNumbers: true,
+    lineNumbers: true
   },
   themeConfig: {
     // 將同時提取 markdown 中 h2 和 h3 標題，顯示在側邊欄上
@@ -24,23 +24,27 @@ module.exports = {
     // 導航欄配置
     nav: [
       // 內部鏈接 以 docs 為根目錄
-      { text: 'GitHub', link: 'https://github.com/linche0859/js-note' }, // 外部鏈接
+      { text: 'GitHub', link: 'https://github.com/linche0859/js-note' } // 外部鏈接
     ],
     // 側邊欄配置
     sidebar: [
       {
         title: '屬性的特徵',
         // collapsable: true,
-        children: ['/Property/expansion', '/Property/getter-setter'],
+        children: ['/Property/expansion', '/Property/getter-setter']
       },
       {
         title: '箭頭函示',
-        children: ['/Arrow/compare'],
+        children: ['/Arrow/compare']
       },
       {
         title: 'Template Literals',
-        children: ['/Template/literals'],
+        children: ['/Template/literals']
       },
-    ],
-  },
+      {
+        title: 'Functional Programming',
+        children: ['/Functional/pipe']
+      }
+    ]
+  }
 };
