@@ -63,3 +63,9 @@ const composeData = compose(
 ```
 
 > 輸出結果：TEKCUB
+
+## 參考
+
+[Monal - 初探篇](https://medium.com/@hannahlin/fp-monad-1-%E5%88%9D%E6%8E%A2%E7%AF%87-fa36bc9bdf54)
+
+[A quick introduction to pipe() and compose() in JavaScript](https://www.freecodecamp.org/news/pipe-and-compose-in-javascript-5b04004ac937/)
