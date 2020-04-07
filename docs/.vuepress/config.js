@@ -41,6 +41,10 @@ module.exports = {
         title: 'Template Literals',
         children: ['/Template/literals'],
       },
+      {
+        title: 'Functional Programming',
+        children: ['/Functional/pipe'],
+      },
     ],
   },
 };
