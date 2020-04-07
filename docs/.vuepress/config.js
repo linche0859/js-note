@@ -34,7 +34,7 @@ module.exports = {
         children: ['/Property/expansion', '/Property/getter-setter'],
       },
       {
-        title: '箭頭函示',
+        title: '箭頭函式',
         children: ['/Arrow/compare'],
       },
       {
