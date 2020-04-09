@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>陣列運用 | JS 筆記</title>
+    <meta name="description" content="">
+    <meta name="generator" content="VuePress 1.4.0">
+    <link rel="icon" href="/js-note/favicon.ico">
+    
+    <link rel="preload" href="/js-note/assets/css/0.styles.c829b8ec.css" as="style"><link rel="preload" href="/js-note/assets/js/app.28e405fe.js" as="script"><link rel="preload" href="/js-note/assets/js/2.5c07b410.js" as="script"><link rel="preload" href="/js-note/assets/js/9.32e08cf3.js" as="script"><link rel="prefetch" href="/js-note/assets/js/10.83c86833.js"><link rel="prefetch" href="/js-note/assets/js/11.51cd0f9b.js"><link rel="prefetch" href="/js-note/assets/js/12.5ee605c5.js"><link rel="prefetch" href="/js-note/assets/js/3.6ecd1688.js"><link rel="prefetch" href="/js-note/assets/js/4.9bb748fa.js"><link rel="prefetch" href="/js-note/assets/js/5.c6db51da.js"><link rel="prefetch" href="/js-note/assets/js/6.6f08c46c.js"><link rel="prefetch" href="/js-note/assets/js/7.b2d9d321.js"><link rel="prefetch" href="/js-note/assets/js/8.afc76211.js">
+    <link rel="stylesheet" href="/js-note/assets/css/0.styles.c829b8ec.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/js-note/" class="home-link router-link-active"><!----> <span class="site-name">JS 筆記</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="https://github.com/linche0859/js-note" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="https://github.com/linche0859/js-note" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>屬性的特徵</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>箭頭函式</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Template Literals</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Functional Programming</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/js-note/Functional/pipe.html" class="sidebar-link">pipe 和 compose</a></li><li><a href="/js-note/Functional/array.html" class="active sidebar-link">陣列運用</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/js-note/Functional/array.html#concatall" class="sidebar-link">concatAll()</a></li><li class="sidebar-sub-header"><a href="/js-note/Functional/array.html#concatmap" class="sidebar-link">concatMap()</a></li><li class="sidebar-sub-header"><a href="/js-note/Functional/array.html#reduce" class="sidebar-link">reduce()</a></li><li class="sidebar-sub-header"><a href="/js-note/Functional/array.html#zipping-arrays" class="sidebar-link">Zipping Arrays</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="陣列運用"><a href="#陣列運用" class="header-anchor">#</a> 陣列運用</h1> <h2 id="concatall"><a href="#concatall" class="header-anchor">#</a> concatAll()</h2> <p>將 <strong>二維陣列</strong> 做展平，並返回一個新陣列</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">concatAll</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> results <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">subArray</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ------------ INSERT CODE HERE! ----------------------------</span>
+    <span class="token comment">// Add all the items in each subArray to the results array.</span>
+    <span class="token comment">// ------------ INSERT CODE HERE! ----------------------------</span>
+    results<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token operator">...</span>subArray<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> results<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>
+  <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>
+    <span class="token punctuation">[</span>
+      <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">concatAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token string">'[1,2,3,4,5,6,7,8,9]'</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">concatAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// throws an error because this is a one-dimensional array</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><h3 id="與-map-的綜合應用"><a href="#與-map-的綜合應用" class="header-anchor">#</a> 與 <code>map()</code> 的綜合應用</h3> <p>取得每一個 <code>video</code> 的 <code>id</code>, <code>title</code>, 150x200 的 <code>boxart</code>，並做展平</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token keyword">var</span> movieLists <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">'Instant Queue'</span><span class="token punctuation">,</span>
+    videos<span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        id<span class="token operator">:</span> <span class="token number">70111470</span><span class="token punctuation">,</span>
+        title<span class="token operator">:</span> <span class="token string">'Die Hard'</span><span class="token punctuation">,</span>
+        boxarts<span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token punctuation">{</span>
+            width<span class="token operator">:</span> <span class="token number">150</span><span class="token punctuation">,</span>
+            height<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+            url<span class="token operator">:</span> <span class="token string">'http://cdn-0.nflximg.com/images/2891/DieHard150.jpg'</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span>
+            width<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+            height<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+            url<span class="token operator">:</span> <span class="token string">'http://cdn-0.nflximg.com/images/2891/DieHard200.jpg'</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        url<span class="token operator">:</span> <span class="token string">'http://api.netflix.com/catalog/titles/movies/70111470'</span><span class="token punctuation">,</span>
+        rating<span class="token operator">:</span> <span class="token number">4.0</span><span class="token punctuation">,</span>
+        bookmark<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        id<span class="token operator">:</span> <span class="token number">654356453</span><span class="token punctuation">,</span>
+        title<span class="token operator">:</span> <span class="token string">'Bad Boys'</span><span class="token punctuation">,</span>
+        boxarts<span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token punctuation">{</span>
+            width<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+            height<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+            url<span class="token operator">:</span> <span class="token string">'http://cdn-0.nflximg.com/images/2891/BadBoys200.jpg'</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span>
+            width<span class="token operator">:</span> <span class="token number">150</span><span class="token punctuation">,</span>
+            height<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+            url<span class="token operator">:</span> <span class="token string">'http://cdn-0.nflximg.com/images/2891/BadBoys150.jpg'</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        url<span class="token operator">:</span> <span class="token string">'http://api.netflix.com/catalog/titles/movies/70111470'</span><span class="token punctuation">,</span>
+        rating<span class="token operator">:</span> <span class="token number">5.0</span><span class="token punctuation">,</span>
+        bookmark<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span> id<span class="token operator">:</span> <span class="token number">432534</span><span class="token punctuation">,</span> time<span class="token operator">:</span> <span class="token number">65876586</span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">'New Releases'</span><span class="token punctuation">,</span>
+    videos<span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        id<span class="token operator">:</span> <span class="token number">65432445</span><span class="token punctuation">,</span>
+        title<span class="token operator">:</span> <span class="token string">'The Chamber'</span><span class="token punctuation">,</span>
+        boxarts<span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token punctuation">{</span>
+            width<span class="token operator">:</span> <span class="token number">150</span><span class="token punctuation">,</span>
+            height<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+            url<span class="token operator">:</span> <span class="token string">'http://cdn-0.nflximg.com/images/2891/TheChamber150.jpg'</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span>
+            width<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+            height<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+            url<span class="token operator">:</span> <span class="token string">'http://cdn-0.nflximg.com/images/2891/TheChamber200.jpg'</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        url<span class="token operator">:</span> <span class="token string">'http://api.netflix.com/catalog/titles/movies/70111470'</span><span class="token punctuation">,</span>
+        rating<span class="token operator">:</span> <span class="token number">4.0</span><span class="token punctuation">,</span>
+        bookmark<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        id<span class="token operator">:</span> <span class="token number">675465</span><span class="token punctuation">,</span>
+        title<span class="token operator">:</span> <span class="token string">'Fracture'</span><span class="token punctuation">,</span>
+        boxarts<span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token punctuation">{</span>
+            width<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+            height<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+            url<span class="token operator">:</span> <span class="token string">'http://cdn-0.nflximg.com/images/2891/Fracture200.jpg'</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span>
+            width<span class="token operator">:</span> <span class="token number">150</span><span class="token punctuation">,</span>
+            height<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+            url<span class="token operator">:</span> <span class="token string">'http://cdn-0.nflximg.com/images/2891/Fracture150.jpg'</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span>
+            width<span class="token operator">:</span> <span class="token number">300</span><span class="token punctuation">,</span>
+            height<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+            url<span class="token operator">:</span> <span class="token string">'http://cdn-0.nflximg.com/images/2891/Fracture300.jpg'</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        url<span class="token operator">:</span> <span class="token string">'http://api.netflix.com/catalog/titles/movies/70111470'</span><span class="token punctuation">,</span>
+        rating<span class="token operator">:</span> <span class="token number">5.0</span><span class="token punctuation">,</span>
+        bookmark<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span> id<span class="token operator">:</span> <span class="token number">432534</span><span class="token punctuation">,</span> time<span class="token operator">:</span> <span class="token number">65876586</span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> result <span class="token operator">=</span> movieLists
+  <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">movie</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      movie<span class="token punctuation">.</span>videos
+        <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">video</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">return</span> video<span class="token punctuation">.</span>boxarts
+            <span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">boxart</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              <span class="token keyword">return</span> boxart<span class="token punctuation">.</span>width <span class="token operator">===</span> <span class="token number">150</span> <span class="token operator">&amp;&amp;</span> boxart<span class="token punctuation">.</span>height <span class="token operator">===</span> <span class="token number">200</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">boxart</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              <span class="token keyword">return</span> <span class="token punctuation">{</span> id<span class="token operator">:</span> video<span class="token punctuation">.</span>id<span class="token punctuation">,</span> title<span class="token operator">:</span> video<span class="token punctuation">.</span>title<span class="token punctuation">,</span> boxart<span class="token operator">:</span> boxart<span class="token punctuation">.</span>url <span class="token punctuation">}</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token comment">// 將每一個 movie 中的全部 video 作展平結合</span>
+        <span class="token punctuation">.</span><span class="token function">concatAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token comment">// 將每一個 movieLists 中的全部 movie 做展平結合</span>
+  <span class="token punctuation">.</span><span class="token function">concatAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br></div></div><h2 id="concatmap"><a href="#concatmap" class="header-anchor">#</a> concatMap()</h2> <p>將 <code>map()</code> 和 <code>concatAll()</code> 做鍊式結合</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">concatMap</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">projectionFunctionThatReturnsArray</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token comment">// 1. 對傳入的陣列作客制的返回值</span>
+    <span class="token comment">// item 為傳入陣列的各項值</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">item</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// ------------   INSERT CODE HERE!  ----------------------------</span>
+      <span class="token comment">// Apply the projection function to each item. The projection</span>
+      <span class="token comment">// function will return a new child array. This will create a</span>
+      <span class="token comment">// two-dimensional array.</span>
+      <span class="token comment">// ------------   INSERT CODE HERE!  ----------------------------</span>
+      <span class="token keyword">return</span> <span class="token function">projectionFunctionThatReturnsArray</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token comment">// apply the concatAll function to flatten the two-dimensional array</span>
+      <span class="token comment">// 2. 將返回值做展平結合</span>
+      <span class="token punctuation">.</span><span class="token function">concatAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> spanishFrenchEnglishWords <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">[</span><span class="token string">'cero'</span><span class="token punctuation">,</span> <span class="token string">'rien'</span><span class="token punctuation">,</span> <span class="token string">'zero'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span><span class="token string">'uno'</span><span class="token punctuation">,</span> <span class="token string">'un'</span><span class="token punctuation">,</span> <span class="token string">'one'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span><span class="token string">'dos'</span><span class="token punctuation">,</span> <span class="token string">'deux'</span><span class="token punctuation">,</span> <span class="token string">'two'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment">// collect all the words for each number, in every language, in a single, flat list</span>
+<span class="token keyword">var</span> allWords <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">concatMap</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">item</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> spanishFrenchEnglishWords<span class="token punctuation">[</span>item<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// [&quot;cero&quot;,&quot;rien&quot;,&quot;zero&quot;,&quot;uno&quot;,&quot;un&quot;,&quot;one&quot;,&quot;dos&quot;,&quot;deux&quot;,&quot;two&quot;]</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>allWords<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br></div></div><h3 id="concatmap-應用"><a href="#concatmap-應用" class="header-anchor">#</a> concatMap() 應用</h3> <p>找出每一個 <code>video</code> 的 <code>id</code>, <code>title</code>, 150x200 的 <code>boxart url</code></p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// movieLists 如上一個例子</span>
+movieLists <span class="token operator">=</span> movieLists<span class="token punctuation">.</span><span class="token function">concatMap</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">movie</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> movie<span class="token punctuation">.</span>videos<span class="token punctuation">.</span><span class="token function">concatMap</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">video</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> video<span class="token punctuation">.</span>boxarts
+      <span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">boxart</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> boxart<span class="token punctuation">.</span>width <span class="token operator">===</span> <span class="token number">150</span> <span class="token operator">&amp;&amp;</span> boxart<span class="token punctuation">.</span>height <span class="token operator">===</span> <span class="token number">200</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">boxart</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span> id<span class="token operator">:</span> video<span class="token punctuation">.</span>id<span class="token punctuation">,</span> title<span class="token operator">:</span> video<span class="token punctuation">.</span>title<span class="token punctuation">,</span> boxart<span class="token operator">:</span> boxart<span class="token punctuation">.</span>url <span class="token punctuation">}</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>movieLists<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><h2 id="reduce"><a href="#reduce" class="header-anchor">#</a> reduce()</h2> <p>自製 <code>reduce</code> 函式，和 ES5 的 <code>reduce</code> 不一樣，且始終回傳 <strong>陣列</strong></p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">reduce</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">combiner<span class="token punctuation">,</span> initialValue</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> counter<span class="token punctuation">,</span> accumulatedValue<span class="token punctuation">;</span>
+
+  <span class="token comment">// If the array is empty, do nothing</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>length <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token comment">// If the user didn't pass an initial value, use the first item.</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>arguments<span class="token punctuation">.</span>length <span class="token operator">===</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      counter <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+      accumulatedValue <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>arguments<span class="token punctuation">.</span>length <span class="token operator">&gt;=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      counter <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+      accumulatedValue <span class="token operator">=</span> initialValue<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token keyword">throw</span> <span class="token string">'Invalid arguments.'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// Loop through the array, feeding the current value and the result of</span>
+    <span class="token comment">// the previous computation back into the combiner function until</span>
+    <span class="token comment">// we've exhausted the entire array and are left with only one value.</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>counter <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      accumulatedValue <span class="token operator">=</span> <span class="token function">combiner</span><span class="token punctuation">(</span>accumulatedValue<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">[</span>counter<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      counter<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> <span class="token punctuation">[</span>accumulatedValue<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br></div></div><h2 id="zipping-arrays"><a href="#zipping-arrays" class="header-anchor">#</a> Zipping Arrays</h2> <p>從不同的兩個陣列，逐步取出一項，並將其組合成一個新陣列</p> <p>想像成一個拉鍊，拉鍊的每一邊都是一個陣列，每個牙齒都是一個項目</p> <h3 id="製作原理"><a href="#製作原理" class="header-anchor">#</a> 製作原理</h3> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// 向 Array 添加靜態函數</span>
+Array<span class="token punctuation">.</span><span class="token function-variable function">zip</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">left<span class="token punctuation">,</span> right<span class="token punctuation">,</span> combinerFunction</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> counter<span class="token punctuation">,</span>
+    results <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token comment">// zip返回的陣列，將僅與最小的輸入陣列一樣大</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span>counter <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> counter <span class="token operator">&lt;</span> Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>left<span class="token punctuation">.</span>length<span class="token punctuation">,</span> right<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span> counter<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Add code here to apply the combinerFunction to the left and right-hand items in the respective arrays</span>
+    results<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token function">combinerFunction</span><span class="token punctuation">(</span>left<span class="token punctuation">[</span>counter<span class="token punctuation">]</span><span class="token punctuation">,</span> right<span class="token punctuation">[</span>counter<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> results<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+Array<span class="token punctuation">.</span><span class="token function">zip</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">left<span class="token punctuation">,</span> right</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> left <span class="token operator">+</span> right<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 結果：[5,7,9]</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><h3 id="取得兩陣列的編號，且長度相同的陣列"><a href="#取得兩陣列的編號，且長度相同的陣列" class="header-anchor">#</a> 取得兩陣列的編號，且長度相同的陣列</h3> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token keyword">const</span> bookmarks <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span> id<span class="token operator">:</span> <span class="token number">470</span><span class="token punctuation">,</span> time<span class="token operator">:</span> <span class="token number">23432</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> id<span class="token operator">:</span> <span class="token number">453</span><span class="token punctuation">,</span> time<span class="token operator">:</span> <span class="token number">234324</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> id<span class="token operator">:</span> <span class="token number">445</span><span class="token punctuation">,</span> time<span class="token operator">:</span> <span class="token number">987834</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> movies <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span> id<span class="token operator">:</span> <span class="token number">70111470</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> id<span class="token operator">:</span> <span class="token number">654356453</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> id<span class="token operator">:</span> <span class="token number">65432445</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> id<span class="token operator">:</span> <span class="token number">675465</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment">// left：可以想像成左邊的單項</span>
+<span class="token comment">// right：可以想像成右邊的單項</span>
+Array<span class="token punctuation">.</span><span class="token function">zip</span><span class="token punctuation">(</span>movies<span class="token punctuation">,</span> bookmarks<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">left<span class="token punctuation">,</span> right</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span> movieId<span class="token operator">:</span> left<span class="token punctuation">.</span>id<span class="token punctuation">,</span> bookmarkId<span class="token operator">:</span> right<span class="token punctuation">.</span>id <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 結果：</span>
+<span class="token comment">// 0: {movieId: 70111470, bookmarkId: 470}</span>
+<span class="token comment">// 1: {movieId: 654356453, bookmarkId: 453}</span>
+<span class="token comment">// 2: {movieId: 65432445, bookmarkId: 445}</span>
+<span class="token comment">// length: 3</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br></div></div><h3 id="concatmap-和-zip-的綜合運用"><a href="#concatmap-和-zip-的綜合運用" class="header-anchor">#</a> <code>concatMap</code> 和 <code>zip</code> 的綜合運用</h3> <p>找出最小 box art url 和 中間時間的 interesting moment</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token keyword">const</span> result <span class="token operator">=</span> movieLists<span class="token punctuation">.</span><span class="token function">concatMap</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">movieList</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> movieList<span class="token punctuation">.</span>videos<span class="token punctuation">.</span><span class="token function">concatMap</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">video</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> Array<span class="token punctuation">.</span><span class="token function">zip</span><span class="token punctuation">(</span>
+      <span class="token comment">// 左邊的陣列</span>
+      video<span class="token punctuation">.</span>boxarts<span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">acc<span class="token punctuation">,</span> curr</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>acc<span class="token punctuation">.</span>width <span class="token operator">*</span> acc<span class="token punctuation">.</span>height <span class="token operator">&lt;</span> curr<span class="token punctuation">.</span>width <span class="token operator">*</span> curr<span class="token punctuation">.</span>height<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">return</span> acc<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+          <span class="token keyword">return</span> curr<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token comment">// 右邊的陣列</span>
+      video<span class="token punctuation">.</span>interestingMoments<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">interestingMoment</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> interestingMoment<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token string">'Middle'</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token comment">// callback</span>
+      <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">boxart<span class="token punctuation">,</span> interestingMoment</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span>
+          id<span class="token operator">:</span> video<span class="token punctuation">.</span>id<span class="token punctuation">,</span>
+          title<span class="token operator">:</span> video<span class="token punctuation">.</span>title<span class="token punctuation">,</span>
+          time<span class="token operator">:</span> interestingMoment<span class="token punctuation">.</span>time<span class="token punctuation">,</span>
+          url<span class="token operator">:</span> boxart<span class="token punctuation">.</span>url<span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 結果：</span>
+<span class="token comment">// 0: {id: 70111470, title: &quot;Die Hard&quot;, time: 323133, url: &quot;http://cdn-0.nflximg.com/images/2891/DieHard150.jpg&quot;}</span>
+<span class="token comment">// 1: {id: 654356453, title: &quot;Bad Boys&quot;, time: 6575665, url: &quot;http://cdn-0.nflximg.com/images/2891/BadBoys140.jpg&quot;}</span>
+<span class="token comment">// 2: {id: 65432445, title: &quot;The Chamber&quot;, time: 3452343, url: &quot;http://cdn-0.nflximg.com/images/2891/TheChamber130.jpg&quot;}</span>
+<span class="token comment">// 3: {id: 675465, title: &quot;Fracture&quot;, time: 3453434, url: &quot;http://cdn-0.nflximg.com/images/2891/Fracture120.jpg&quot;}</span>
+<span class="token comment">// length: 4</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br></div></div><h3 id="綜合運用"><a href="#綜合運用" class="header-anchor">#</a> 綜合運用</h3> <p>將結果呈現如下</p> <div class="language-json line-numbers-mode"><pre class="language-json"><code><span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;New Releases&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;videos&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">65432445</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;title&quot;</span><span class="token operator">:</span> <span class="token string">&quot;The Chamber&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;time&quot;</span><span class="token operator">:</span> <span class="token number">32432</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;boxart&quot;</span><span class="token operator">:</span> <span class="token string">&quot;http://cdn-0.nflximg.com/images/2891/TheChamber130.jpg&quot;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">675465</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;title&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Fracture&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;time&quot;</span><span class="token operator">:</span> <span class="token number">3534543</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;boxart&quot;</span><span class="token operator">:</span> <span class="token string">&quot;http://cdn-0.nflximg.com/images/2891/Fracture120.jpg&quot;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Thrillers&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;videos&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">70111470</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;title&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Die Hard&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;time&quot;</span><span class="token operator">:</span> <span class="token number">645243</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;boxart&quot;</span><span class="token operator">:</span> <span class="token string">&quot;http://cdn-0.nflximg.com/images/2891/DieHard150.jpg&quot;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">654356453</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;title&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Bad Boys&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;time&quot;</span><span class="token operator">:</span> <span class="token number">984934</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;boxart&quot;</span><span class="token operator">:</span> <span class="token string">&quot;http://cdn-0.nflximg.com/images/2891/BadBoys140.jpg&quot;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br></div></div><div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token keyword">const</span> lists <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    id<span class="token operator">:</span> <span class="token number">5434364</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'New Releases'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    id<span class="token operator">:</span> <span class="token number">65456475</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">'Thrillers'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> videos <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    listId<span class="token operator">:</span> <span class="token number">5434364</span><span class="token punctuation">,</span>
+    id<span class="token operator">:</span> <span class="token number">65432445</span><span class="token punctuation">,</span>
+    title<span class="token operator">:</span> <span class="token string">'The Chamber'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    listId<span class="token operator">:</span> <span class="token number">5434364</span><span class="token punctuation">,</span>
+    id<span class="token operator">:</span> <span class="token number">675465</span><span class="token punctuation">,</span>
+    title<span class="token operator">:</span> <span class="token string">'Fracture'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    listId<span class="token operator">:</span> <span class="token number">65456475</span><span class="token punctuation">,</span>
+    id<span class="token operator">:</span> <span class="token number">70111470</span><span class="token punctuation">,</span>
+    title<span class="token operator">:</span> <span class="token string">'Die Hard'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    listId<span class="token operator">:</span> <span class="token number">65456475</span><span class="token punctuation">,</span>
+    id<span class="token operator">:</span> <span class="token number">654356453</span><span class="token punctuation">,</span>
+    title<span class="token operator">:</span> <span class="token string">'Bad Boys'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> boxarts <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    videoId<span class="token operator">:</span> <span class="token number">65432445</span><span class="token punctuation">,</span>
+    width<span class="token operator">:</span> <span class="token number">130</span><span class="token punctuation">,</span>
+    height<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    url<span class="token operator">:</span> <span class="token string">'http://cdn-0.nflximg.com/images/2891/TheChamber130.jpg'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    videoId<span class="token operator">:</span> <span class="token number">65432445</span><span class="token punctuation">,</span>
+    width<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    height<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    url<span class="token operator">:</span> <span class="token string">'http://cdn-0.nflximg.com/images/2891/TheChamber200.jpg'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    videoId<span class="token operator">:</span> <span class="token number">675465</span><span class="token punctuation">,</span>
+    width<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    height<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    url<span class="token operator">:</span> <span class="token string">'http://cdn-0.nflximg.com/images/2891/Fracture200.jpg'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    videoId<span class="token operator">:</span> <span class="token number">675465</span><span class="token punctuation">,</span>
+    width<span class="token operator">:</span> <span class="token number">120</span><span class="token punctuation">,</span>
+    height<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    url<span class="token operator">:</span> <span class="token string">'http://cdn-0.nflximg.com/images/2891/Fracture120.jpg'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    videoId<span class="token operator">:</span> <span class="token number">675465</span><span class="token punctuation">,</span>
+    width<span class="token operator">:</span> <span class="token number">300</span><span class="token punctuation">,</span>
+    height<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    url<span class="token operator">:</span> <span class="token string">'http://cdn-0.nflximg.com/images/2891/Fracture300.jpg'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    videoId<span class="token operator">:</span> <span class="token number">70111470</span><span class="token punctuation">,</span>
+    width<span class="token operator">:</span> <span class="token number">150</span><span class="token punctuation">,</span>
+    height<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    url<span class="token operator">:</span> <span class="token string">'http://cdn-0.nflximg.com/images/2891/DieHard150.jpg'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    videoId<span class="token operator">:</span> <span class="token number">70111470</span><span class="token punctuation">,</span>
+    width<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    height<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    url<span class="token operator">:</span> <span class="token string">'http://cdn-0.nflximg.com/images/2891/DieHard200.jpg'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    videoId<span class="token operator">:</span> <span class="token number">654356453</span><span class="token punctuation">,</span>
+    width<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    height<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    url<span class="token operator">:</span> <span class="token string">'http://cdn-0.nflximg.com/images/2891/BadBoys200.jpg'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    videoId<span class="token operator">:</span> <span class="token number">654356453</span><span class="token punctuation">,</span>
+    width<span class="token operator">:</span> <span class="token number">140</span><span class="token punctuation">,</span>
+    height<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    url<span class="token operator">:</span> <span class="token string">'http://cdn-0.nflximg.com/images/2891/BadBoys140.jpg'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> bookmarks <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span> videoId<span class="token operator">:</span> <span class="token number">65432445</span><span class="token punctuation">,</span> time<span class="token operator">:</span> <span class="token number">32432</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> videoId<span class="token operator">:</span> <span class="token number">675465</span><span class="token punctuation">,</span> time<span class="token operator">:</span> <span class="token number">3534543</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> videoId<span class="token operator">:</span> <span class="token number">70111470</span><span class="token punctuation">,</span> time<span class="token operator">:</span> <span class="token number">645243</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> videoId<span class="token operator">:</span> <span class="token number">654356453</span><span class="token punctuation">,</span> time<span class="token operator">:</span> <span class="token number">984934</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">return</span> lists<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">list</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> list<span class="token punctuation">.</span>name<span class="token punctuation">,</span>
+    videos<span class="token operator">:</span> videos
+      <span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">video</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> video<span class="token punctuation">.</span>listId <span class="token operator">===</span> list<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">concatMap</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">video</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> Array<span class="token punctuation">.</span><span class="token function">zip</span><span class="token punctuation">(</span>
+          bookmarks<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">bookmark</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> bookmark<span class="token punctuation">.</span>videoId <span class="token operator">===</span> video<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+          <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          boxarts
+            <span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">boxart</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              <span class="token keyword">return</span> boxart<span class="token punctuation">.</span>videoId <span class="token operator">===</span> video<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">acc<span class="token punctuation">,</span> curr</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              <span class="token keyword">return</span> acc<span class="token punctuation">.</span>width <span class="token operator">*</span> acc<span class="token punctuation">.</span>height <span class="token operator">&lt;</span> curr<span class="token punctuation">.</span>width <span class="token operator">*</span> curr<span class="token punctuation">.</span>height
+                <span class="token operator">?</span> acc
+                <span class="token operator">:</span> curr<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">bookmark<span class="token punctuation">,</span> boxart</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token punctuation">{</span>
+              id<span class="token operator">:</span> video<span class="token punctuation">.</span>id<span class="token punctuation">,</span>
+              title<span class="token operator">:</span> video<span class="token punctuation">.</span>title<span class="token punctuation">,</span>
+              time<span class="token operator">:</span> bookmark<span class="token punctuation">.</span>time<span class="token punctuation">,</span>
+              boxart<span class="token operator">:</span> boxart<span class="token punctuation">.</span>url<span class="token punctuation">,</span>
+            <span class="token punctuation">}</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br><span class="line-number">114</span><br><span class="line-number">115</span><br><span class="line-number">116</span><br><span class="line-number">117</span><br><span class="line-number">118</span><br><span class="line-number">119</span><br><span class="line-number">120</span><br><span class="line-number">121</span><br><span class="line-number">122</span><br><span class="line-number">123</span><br><span class="line-number">124</span><br><span class="line-number">125</span><br><span class="line-number">126</span><br><span class="line-number">127</span><br><span class="line-number">128</span><br></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">4/9/2020, 8:03:55 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/js-note/Functional/pipe.html" class="prev">
+        pipe 和 compose
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/js-note/assets/js/app.28e405fe.js" defer></script><script src="/js-note/assets/js/2.5c07b410.js" defer></script><script src="/js-note/assets/js/9.32e08cf3.js" defer></script>
+  </body>
+</html>
