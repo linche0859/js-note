@@ -43,7 +43,7 @@ module.exports = {
       },
       {
         title: 'Functional Programming',
-        children: ['/Functional/pipe']
+        children: ['/Functional/pipe', '/Functional/array']
       }
     ]
   }
