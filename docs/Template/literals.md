@@ -10,7 +10,8 @@
 
 ```js
 const myName = '小明';
-// strings 為陣列：['您好 ','，餐點已經準備好囉，請 ', ' 過來取餐']
+// strings 為陣列：['您好 ', '，餐點已經準備好囉，請 ', ' 過來取餐']
+// 展開的 arg 為陣列：['小明', '小明']
 const highlight = (strings, ...arg) =>
   strings
     .map((str, i) => `${str}${arg[i] ? `<span>${arg[i]}</span>` : ''}`)
@@ -45,6 +46,8 @@ function convertHTML(strings, ...keys) {
     )
     .join('');
 }
+// 如果正常呈現(非用作 XSS 預防)，則在載入圖片時，同時執行 ajax
+// 有機會將用戶資訊洩漏出去
 const messageName = `<img onload="fetch('https://randomuser.me/api/')" />`;
 document.querySelector(
   '#message'
@@ -56,10 +59,10 @@ document.querySelector(
 - 範例二
 
 ```js
-const unescapeHTML = str =>
+const unescapeHTML = (str) =>
   str.replace(
     /&|<|>|'|"/g,
-    tag =>
+    (tag) =>
       ({
         '&': '&amp;',
         '<': '&lt;',
