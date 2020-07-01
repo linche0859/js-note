@@ -19,7 +19,7 @@ const highlight = (strings, ...arg) =>
 const sentence = highlight`您好 ${myName}，餐點已經準備好囉，請 ${myName} 過來取餐`;
 ```
 
-![輸出結果](./literals-span.jpg)
+![輸出結果](./images/literals-span.jpg)
 
 ## 預防 XSS 攻擊
 
@@ -54,7 +54,7 @@ document.querySelector(
 ).innerHTML = convertHTML`<p>${messageName}</p>`;
 ```
 
-![輸出結果](./literals-xss.jpg)
+![輸出結果](./images/literals-xss.jpg)
 
 - 範例二
 

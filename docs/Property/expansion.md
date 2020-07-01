@@ -31,7 +31,7 @@ Object.defineProperty(person, 'a', {
 delete person.b;
 ```
 
-![輸出結果](./prevent-extension.jpg)
+![輸出結果](./images/prevent-extension.jpg)
 
 ## seal
 
@@ -64,7 +64,7 @@ Object.defineProperty(person, 'a', {
 delete person.b;
 ```
 
-![輸出結果](./seal.jpg)
+![輸出結果](./images/seal.jpg)
 
 ## freeze
 
@@ -98,4 +98,4 @@ Object.defineProperty(person, 'a', {
 delete person.b;
 ```
 
-![輸出結果](./freeze.jpg)
+![輸出結果](./images/freeze.jpg)

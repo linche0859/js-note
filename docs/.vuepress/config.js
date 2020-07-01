@@ -34,16 +34,26 @@ module.exports = {
         children: ['/Property/expansion', '/Property/getter-setter'],
       },
       {
-        title: '箭頭函式',
-        children: ['/Arrow/compare'],
-      },
-      {
-        title: 'Template Literals',
-        children: ['/Template/literals'],
+        title: 'ES6',
+        children: [
+          '/ES6/arrow-compare',
+          '/ES6/template-literals',
+          '/ES6/request-comparison',
+        ],
       },
       {
         title: 'Functional Programming',
         children: ['/Functional/pipe', '/Functional/array'],
+      },
+      {
+        title: 'RxJS',
+        children: [
+          '/RxJS/observable-basic',
+          '/RxJS/observable',
+          '/RxJS/creation-operator',
+          '/RxJS/observable-operators',
+          '/RxJS/drag-drop-implementation',
+        ],
       },
     ],
   },

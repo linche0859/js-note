@@ -23,7 +23,7 @@ wallet.save = 300;
 ```
 
 預設 `save` 屬性為 `(...)`，當點開後，才會針對目前的 `total` 做 `getter` 取值
-![輸出結果](./getter-setter-in-object.jpg)
+![輸出結果](./images/getter-setter-in-object.jpg)
 
 ## 方法二
 
@@ -47,7 +47,7 @@ Object.defineProperty(wallet, 'save', {
 wallet.save = 300;
 ```
 
-![輸出結果](./definedProperty-getter-setter.jpg)
+![輸出結果](./images/definedProperty-getter-setter.jpg)
 
 ## 實例
 

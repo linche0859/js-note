@@ -1,4 +1,4 @@
-# 與傳統函示不同處
+# 箭頭函式
 
 ## 沒有 `arguments` 參數
 
@@ -11,7 +11,7 @@ const nums = (...arg) => {
 nums[(10, 50, 100, 50, 5, 1, 1, 1, 500)];
 ```
 
-![輸出結果](./arguments.jpg)
+![輸出結果](./images/arguments.jpg)
 
 ## `This` 綁定的差異
 
@@ -21,7 +21,7 @@ nums[(10, 50, 100, 50, 5, 1, 1, 1, 500)];
 const myName = '全域';
 const person = {
   myName: '小明',
-  callName: function() {
+  callName: function () {
     console.log('1', this.myName);
     // 可暫時視 setTimeout 中的 this 跟 callName 為同一層
     // 所以 this 會指向 person 的作用域
@@ -45,7 +45,7 @@ person.callName();
 
 ```js
 const elem = document.querySelector('p');
-elem.addEventListener('click', function() {
+elem.addEventListener('click', function () {
   // this 指向 p 標籤
   console.log(this);
 });
@@ -60,25 +60,25 @@ elem.addEventListener('click', () => {
 - 範例一
 
 ```js
-const Fn = function(a) {
+const Fn = function (a) {
   this.name = a;
 };
 
-const ArrowFn = a => {
+const ArrowFn = (a) => {
   this.name = a;
 };
 
 console.log(Fn.prototype, ArrowFn.prototype);
 ```
 
-![輸出結果](./arrow-prototype.jpg)
+![輸出結果](./images/arrow-prototype.jpg)
 
 所以，箭頭函式 **沒有** 辦法作為建構函式使用
 
 - 範例二
 
 ```js
-const Fn = function(a) {
+const Fn = function (a) {
   this.name = a;
 };
 Fn.prototype.protoFn = () => {
