@@ -55,6 +55,10 @@ module.exports = {
           '/RxJS/drag-drop-implementation',
         ],
       },
+      {
+        title: 'Gulp',
+        children: ['/gulp/basic'],
+      },
     ],
   },
 };

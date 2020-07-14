@@ -4,3 +4,4 @@
 - [ES6](/ES6/arrow-compare.md)
 - [Functional Programming](/Functional/pipe.md)
 - [RxJS](/RxJS/observable-basic.md)
+- [Gulp](/gulp/basic.md)
