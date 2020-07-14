@@ -205,3 +205,9 @@ export default build;
 ```
 
 當設定完成後，只要透過 `gulp` 指令，即可執行序列中的任務。
+
+## 參考
+
+[Github repository](https://github.com/linche0859/gulp-test)
+
+[Hexschool gulp template](https://github.com/hexschool/web-layout-training-gulp/tree/master)
