@@ -46,9 +46,11 @@
 
    | 套件名          | 描述                                      |
    | --------------- | ----------------------------------------- |
+   | autoprefixer    | 添加適應瀏覽器的前綴字於 css              |
    | gulp-sourcemaps | 提供原始碼的位置資訊                      |
    | gulp-sass       | 可以在專案中使用 sass / scss              |
    | node-sass       | 轉譯 scss 內容至 css                      |
+   | gulp-postcss    | 為轉譯後的 css 添加多個 plugin            |
    | gulp-babel      | 轉譯 ES2015+ 內容至通用的 JavaScript 版本 |
    | gulp-concat     | 將多個檔案壓縮至一個檔案                  |
    | gulp-uglify     | 使用 UglifyJS3 壓縮 JavaScript            |
@@ -93,20 +95,57 @@ function copyHTML() {
 
 ### 轉譯 Sass / Scss 檔案
 
+:::tip 提醒
+
+因為有使用 `autoprefixer` 的套件，建議新增 `.browserslistrc` 檔案於專案根目錄下或在 `package.json` 中新增 `browserslist` 屬性。
+
+- `.browserslistrc`
+  ```
+  last 2 version
+  > 5%
+  ```
+- `package.json`
+  ```json
+  "browserslist": {
+    "production": [
+      "> 1%",
+      "ie 10"
+    ],
+    "modern": [
+      "last 1 chrome version",
+      "last 1 firefox version"
+    ],
+    "ssr": [
+      "node 12"
+    ]
+  }
+  ```
+
+關於 `browserslist` 設定可以參考[連結](https://github.com/browserslist/browserslist)
+
+:::
+
 ```js
 import sass from 'gulp-sass';
 import nodeSass from 'node-sass';
+import postcss from 'gulp-postcss';
+import autoprefixer from 'autoprefixer';
 
 sass.compiler = nodeSass;
 
 export function styles() {
-  return gulp
-    .src(paths.styles.src)
-    .pipe(sourcemaps.init())
-    .pipe(sass().on('error', sass.logError))
-    .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest(paths.styles.dest))
-    .pipe(browserSync.stream());
+  const plugins = [autoprefixer()];
+  return (
+    gulp
+      .src(paths.styles.src)
+      .pipe(sourcemaps.init())
+      .pipe(sass().on('error', sass.logError))
+      // 這時已經編譯好 css
+      .pipe(postcss(plugins))
+      .pipe(sourcemaps.write('./'))
+      .pipe(gulp.dest(paths.styles.dest))
+      .pipe(browserSync.stream())
+  );
 }
 ```
 

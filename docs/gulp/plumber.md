@@ -6,7 +6,7 @@
    npm i gulp-plumber
    ```
 
-1. 將 plumber() 加於任務的 src 後方，如：
+1. 將 `plumber()` 加於任務的 `src` 後方，如：
    ```js
    gulp.src(paths.styles.src).pipe(plumber());
    ```
