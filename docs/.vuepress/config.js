@@ -57,7 +57,14 @@ module.exports = {
       },
       {
         title: 'Gulp',
-        children: ['/gulp/basic', '/gulp/plumber'],
+        children: [
+          '/gulp/basic',
+          '/gulp/plumber',
+          '/gulp/load-plugin',
+          '/gulp/order',
+          '/gulp/optimization',
+          '/gulp/compress-picture',
+        ],
       },
     ],
   },

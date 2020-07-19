@@ -28,3 +28,7 @@
 
 - [基礎設定](/gulp/basic.md)
 - [運行的過程中遇錯不會中斷](/gulp/plumber.md)
+- [load plugins 簡化載入流程](/gulp/load-plugin.md)
+- [排序執行的檔案](/gulp/order.md)
+- [優化程式碼](/gulp/optimization.md)
+- [圖片壓縮技巧](/gulp/compress-picture.md)

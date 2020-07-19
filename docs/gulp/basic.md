@@ -97,7 +97,7 @@ function copyHTML() {
 
 :::tip 提醒
 
-因為有使用 `autoprefixer` 的套件，建議新增 `.browserslistrc` 檔案於專案根目錄下或在 `package.json` 中新增 `browserslist` 屬性。
+如果有使用 `autoprefixer` 的套件，建議新增 `.browserslistrc` 檔案於專案根目錄下或在 `package.json` 中新增 `browserslist` 屬性。
 
 - `.browserslistrc`
   ```
@@ -150,6 +150,22 @@ export function styles() {
 ```
 
 ### 轉譯 JavaScript 檔案
+
+:::tip 提醒
+
+`gulp-babel` 套件可能在更新時沒有加入核心套件，導致在加入 babel 時可能會出現：
+
+```bash
+cannot find module 'bable-core'
+```
+
+但不是所有環境都會遇到這樣的狀況，如果發生此問題，可以手動加入此套件：
+
+```bash
+npm install babel-core --save
+```
+
+:::
 
 ```js
 import babel from 'gulp-babel';
