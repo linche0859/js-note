@@ -10,6 +10,7 @@
 - [箭頭函式](/ES6/arrow-compare.md)
 - [標籤樣板字面值](/ES6/template-literals.md)
 - [Fetch API 和 Axios](/ES6/request-comparison.md)
+- [非同步機制](/ES6/async-await.md)
 
 ## Functional Programming
 

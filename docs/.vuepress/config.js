@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   title: 'JS 筆記',
   base: '/js-note/',
@@ -6,7 +8,8 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        '@image': '/images',
+        '@image': path.resolve(__dirname, './images'),
+        '@styles': path.resolve(__dirname, './styles'),
       },
     },
   },
@@ -39,6 +42,7 @@ module.exports = {
           '/ES6/arrow-compare',
           '/ES6/template-literals',
           '/ES6/request-comparison',
+          '/ES6/async-await',
         ],
       },
       {
