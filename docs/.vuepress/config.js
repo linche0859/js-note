@@ -9,13 +9,13 @@ module.exports = {
     resolve: {
       alias: {
         '@image': path.resolve(__dirname, './images'),
-        '@styles': path.resolve(__dirname, './styles'),
-      },
-    },
+        '@styles': path.resolve(__dirname, './styles')
+      }
+    }
   },
   markdown: {
     // 代碼塊顯示行號
-    lineNumbers: true,
+    lineNumbers: true
   },
   themeConfig: {
     // 將同時提取 markdown 中 h2 和 h3 標題，顯示在側邊欄上
@@ -27,14 +27,14 @@ module.exports = {
     // 導航欄配置
     nav: [
       // 內部鏈接 以 docs 為根目錄
-      { text: 'GitHub', link: 'https://github.com/linche0859/js-note' }, // 外部鏈接
+      { text: 'GitHub', link: 'https://github.com/linche0859/js-note' } // 外部鏈接
     ],
     // 側邊欄配置
     sidebar: [
       {
         title: '屬性的特徵',
         // collapsable: true,
-        children: ['/Property/expansion', '/Property/getter-setter'],
+        children: ['/Property/expansion', '/Property/getter-setter']
       },
       {
         title: 'ES6',
@@ -43,11 +43,12 @@ module.exports = {
           '/ES6/template-literals',
           '/ES6/request-comparison',
           '/ES6/async-await',
-        ],
+          '/ES6/lazyload-image'
+        ]
       },
       {
         title: 'Functional Programming',
-        children: ['/Functional/pipe', '/Functional/array'],
+        children: ['/Functional/pipe', '/Functional/array']
       },
       {
         title: 'RxJS',
@@ -56,8 +57,8 @@ module.exports = {
           '/RxJS/observable',
           '/RxJS/creation-operator',
           '/RxJS/observable-operators',
-          '/RxJS/drag-drop-implementation',
-        ],
+          '/RxJS/drag-drop-implementation'
+        ]
       },
       {
         title: 'Gulp',
@@ -67,9 +68,9 @@ module.exports = {
           '/gulp/load-plugin',
           '/gulp/order',
           '/gulp/optimization',
-          '/gulp/compress-picture',
-        ],
-      },
-    ],
-  },
+          '/gulp/compress-picture'
+        ]
+      }
+    ]
+  }
 };
