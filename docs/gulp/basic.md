@@ -44,7 +44,7 @@
    ```
 1. 安裝套件
 
-   | 套件名          | 描述                                      |
+   | 套件名稱        | 描述                                      |
    | --------------- | ----------------------------------------- |
    | autoprefixer    | 添加適應瀏覽器的前綴字於 css              |
    | gulp-sourcemaps | 提供原始碼的位置資訊                      |
@@ -66,16 +66,16 @@
 const paths = {
   html: {
     src: './src/**/*.html',
-    dest: 'dist/',
+    dest: 'dist/'
   },
   styles: {
     src: './src/scss/**/*.scss',
-    dest: 'dist/styles/',
+    dest: 'dist/styles/'
   },
   scripts: {
     src: './src/scripts/**/*.js',
-    dest: 'dist/scripts/',
-  },
+    dest: 'dist/scripts/'
+  }
 };
 ```
 
@@ -179,7 +179,7 @@ export function scripts() {
       .pipe(sourcemaps.init())
       .pipe(
         babel({
-          presets: ['@babel/env'],
+          presets: ['@babel/env']
         })
       )
       .pipe(uglify())
@@ -201,9 +201,9 @@ export function browser() {
   browserSync.init({
     server: {
       // 記得要加入瀏覽器的開啟位置
-      baseDir: './dist/',
+      baseDir: './dist/'
     },
-    port: 8082,
+    port: 8082
   });
 }
 ```

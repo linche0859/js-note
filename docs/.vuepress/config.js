@@ -68,7 +68,8 @@ module.exports = {
           '/gulp/load-plugin',
           '/gulp/order',
           '/gulp/optimization',
-          '/gulp/compress-picture'
+          '/gulp/compress-picture',
+          '/gulp/ejs'
         ]
       }
     ]

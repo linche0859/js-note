@@ -34,3 +34,4 @@
 - [排序執行的檔案](/gulp/order.md)
 - [優化程式碼](/gulp/optimization.md)
 - [圖片壓縮技巧](/gulp/compress-picture.md)
+- [EJS](/gulp/ejs.md)
