@@ -1,33 +1,30 @@
 <template>
   <div class="arrayMap">
-    <button
+    <h2 class="border-bottom-0">Get [1,2,3] order by order</h2>
+    <base-button
       :class="['btn', 'btn-success', {'mb-3': consoleList.length}]"
-      :disabled="loading"
+      :loading="loading"
       @click="clickHandler"
-    >
-      <span v-if="loading">
-        <span class="spinner-border spinner-border-sm" role="status">
-          <span class="sr-only">Loading...</span>
-        </span>
-        <span>loading</span>
-      </span>
-      <span v-else>Click</span>
-    </button>
+    ></base-button>
     <ul class="my-0">
       <li
         v-for="item in consoleList"
         :key="'id' + item.currentItem"
-      >{{ `目前讀取的值：${item.currentItem}，等待時間：${item.wait}秒` }}</li>
+      >{{ `Current value：${item.currentItem}，Waiting time：${item.wait}秒` }}</li>
     </ul>
-    <p v-show="resultList.length">最終取得的資料：{{ JSON.stringify(resultList) }}</p>
+    <p v-show="resultList.length">The final data：{{ JSON.stringify(resultList) }}</p>
   </div>
 </template>
 
 <script>
+import BaseButton from "../../BaseButton";
+
 export default {
   // 非同步執行陣列的 map 方法
   name: "ArrayMap",
-  components: {},
+  components: {
+    BaseButton,
+  },
   props: {},
   data() {
     return {
@@ -38,7 +35,7 @@ export default {
       // 畫面顯示的列表
       consoleList: [],
       // 非同步執行後的資料
-      resultList: []
+      resultList: [],
     };
   },
   computed: {},
@@ -65,7 +62,7 @@ export default {
      * @param {number} seconds 延遲秒數
      */
     timeout(callback, seconds) {
-      return new Promise(resolve =>
+      return new Promise((resolve) =>
         setTimeout(() => {
           callback();
           resolve();
@@ -80,8 +77,8 @@ export default {
       this.consoleList = [];
       this.resultList = [];
       this.$nextTick(async () => {
-        this.resultList = await this.asyncMap(this.list, async item => {
-          const wait = Math.floor(Math.random() * 10);
+        this.resultList = await this.asyncMap(this.list, async (item) => {
+          const wait = Math.floor(Math.random() * 5);
           await this.timeout(() => {
             this.consoleList.push({ currentItem: item, wait });
           }, wait * 1000);
@@ -89,8 +86,8 @@ export default {
         });
         this.loading = false;
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
