@@ -36,3 +36,4 @@
 - [優化程式碼](/gulp/optimization.md)
 - [圖片壓縮技巧](/gulp/compress-picture.md)
 - [EJS](/gulp/ejs.md)
+- [includePaths 載入外部資源](/gulp/include-path.md)

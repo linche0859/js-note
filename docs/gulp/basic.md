@@ -203,7 +203,10 @@ export function browser() {
       // 記得要加入瀏覽器的開啟位置
       baseDir: './dist/'
     },
-    port: 8082
+    port: 8082,
+    // 如果頻繁更新檔案，須至少等待兩秒才會觸發
+    // 預設為 0 秒
+    reloadDebounce: 2000
   });
 }
 ```

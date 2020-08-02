@@ -70,7 +70,8 @@ module.exports = {
           '/gulp/order',
           '/gulp/optimization',
           '/gulp/compress-picture',
-          '/gulp/ejs'
+          '/gulp/ejs',
+          '/gulp/include-path'
         ]
       }
     ]
