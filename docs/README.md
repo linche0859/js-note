@@ -37,3 +37,8 @@
 - [圖片壓縮技巧](/gulp/compress-picture.md)
 - [EJS](/gulp/ejs.md)
 - [includePaths 載入外部資源](/gulp/include-path.md)
+
+## Plugin
+
+- [ESLint 和 StyleLint](/plugin/lint.md)
+- [S.O.L.I.D](/plugin/solid.md)

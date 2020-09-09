@@ -73,6 +73,10 @@ module.exports = {
           '/gulp/ejs',
           '/gulp/include-path'
         ]
+      },
+      {
+        title: 'Plugin',
+        children: ['/plugin/lint', '/plugin/solid']
       }
     ]
   }
