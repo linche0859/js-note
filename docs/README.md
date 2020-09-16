@@ -18,6 +18,8 @@
 
 - [pipe 和 compose](/Functional/pipe.md)
 - [陣列運用](/Functional/array.md)
+- [Curry](/Functional/curry.md)
+- [Composition](/Functional/composition.md)
 
 ## RxJS
 
