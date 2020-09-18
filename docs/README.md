@@ -20,6 +20,7 @@
 - [Curry](/Functional/curry.md)
 - [Composition](/Functional/composition.md)
 - [Spread and Gather](/Functional/spread.md)
+- [Partial Application](/Functional/partial-application.md)
 
 ## RxJS
 

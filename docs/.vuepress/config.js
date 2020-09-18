@@ -54,6 +54,7 @@ module.exports = {
           '/Functional/curry',
           '/Functional/composition',
           '/Functional/spread',
+          '/Functional/partial-application',
         ],
       },
       {
