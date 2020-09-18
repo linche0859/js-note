@@ -12,7 +12,6 @@
 - [Fetch API 和 Axios](/ES6/request-comparison.md)
 - [非同步機制](/ES6/async-await.md)
 - [透過 lazy loading 延遲載入圖片](/ES6/lazyload-image.md)
-- [Fetch](/ES6/fetch.md)
 
 ## Functional Programming
 

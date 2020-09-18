@@ -44,7 +44,6 @@ module.exports = {
           '/ES6/request-comparison',
           '/ES6/async-await',
           '/ES6/lazyload-image',
-          '/ES6/fetch',
         ],
       },
       {
