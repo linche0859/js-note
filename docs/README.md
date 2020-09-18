@@ -20,6 +20,7 @@
 - [陣列運用](/Functional/array.md)
 - [Curry](/Functional/curry.md)
 - [Composition](/Functional/composition.md)
+- [Spread and Gather](/Functional/spread.md)
 
 ## RxJS
 

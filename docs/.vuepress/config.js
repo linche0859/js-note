@@ -54,6 +54,7 @@ module.exports = {
           '/Functional/array',
           '/Functional/curry',
           '/Functional/composition',
+          '/Functional/spread',
         ],
       },
       {
