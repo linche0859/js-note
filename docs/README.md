@@ -21,6 +21,7 @@
 - [Composition](/Functional/composition.md)
 - [Spread and Gather](/Functional/spread.md)
 - [Partial Application](/Functional/partial-application.md)
+- [常用的 Ramda API](/Functional/common.md)
 
 ## RxJS
 
