@@ -13,13 +13,13 @@ const unary = (fn) => (arg) => fn(arg);
 範例：
 
 ```js
-["1", "2", "3"].map(parseInt); // [1, NaN, NaN]
+['1', '2', '3'].map(parseInt); // [1, NaN, NaN]
 ```
 
 `unary(..)` 利用了 `onlyOneArg` 包裝，阻擋第一參數外的參數通過，也就是例子中的 `index` 不會被傳進 `parseInt(..)` 了。
 
 ```js
-["1", "2", "3"].map(unary(parseInt)); // [1, 2, 3]
+['1', '2', '3'].map(unary(parseInt)); // [1, 2, 3]
 ```
 
 ## identity
@@ -31,7 +31,7 @@ const identical = (v) => v;
 ```
 
 ```js
-const words = "   The JavaScript ecosystem is richer than ever...  ".split(
+const words = '   The JavaScript ecosystem is richer than ever...  '.split(
   /\s|\b/
 );
 
@@ -76,10 +76,15 @@ fn1.then(someHandlerFunc).then(constant(fn2)).then(someHandlerFunc);
 
 ### 結合運用
 
+輸入大於長度 5 的值，才做顯示。
+
 ```js
 const output = (input) => console.log(input);
+const isShortEnough = (x) => x.length <= 5;
 
-const printIf = uncurry(rightPartial(when, output));
+const f2 = R.partialRight(R.when, [output]);
+
+f2(R.complement(isShortEnough))('Hello World'); // 成功輸出
 ```
 
 ## 參考

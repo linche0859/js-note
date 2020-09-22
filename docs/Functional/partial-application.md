@@ -61,6 +61,25 @@ R.partialRight(foo, '在你的右邊')(1, 2, 3); // "123在,你,的,右,邊"
 R.partialRight(foo, '在你的右邊')(1, 2, 3, 4); // "1234,在,你,的,右,邊"
 ```
 
+## 解構賦值
+
+```js
+function partialProps(fn, presetArgsObj) {
+  return function partiallyApplied(laterArgsObj) {
+    return fn(Object.assign({}, presetArgsObj, laterArgsObj));
+  };
+}
+```
+
+```js
+function move({ x = 0, y = 0, z } = {}) {
+  return [x, y, z];
+}
+
+const f2 = partialProps(move, { y: 2 });
+f2({ x: 1, z: 6 }); // [1, 2, 6]
+```
+
 ## 參考
 
 [Partial Application 偏函數應用](https://ithelp.ithome.com.tw/articles/10194837)

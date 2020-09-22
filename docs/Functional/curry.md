@@ -69,6 +69,118 @@ sum(1)(2)(3); // 6
 sum(1)(2)(3); // 6
 ```
 
+## 改寫 ES6 版本
+
+```js
+const curry = (fn, ARITY = fn.length, nextCurried) =>
+  (nextCurried = (prevArgs) => (nextArg) => {
+    const args = [...prevArgs, nextArg];
+
+    if (args.length >= ARITY) {
+      return fn(...args);
+    } else {
+      return nextCurried(args);
+    }
+  })([]);
+```
+
+1. 初始 `[]` 做為 prevArgs，收集已傳入的參數
+1. 多傳入 nextCurried 做為遞迴的具名 arrow function
+1. 每當傳入參數時，便會回傳 nextCurried()，直到收集到足夠的實參，就利用這些實參，呼叫原函數 fn
+
+### 使用限制
+
+如果 `length` 不明確的函數：包含預設參數、destructing、或不定長度參數 `...args`，便要指定明確的參數個數傳入。
+
+```js
+function sum(...args) {
+  var sum = 0;
+  for (let i = 0; i < args.length; i++) {
+    sum += args[i];
+  }
+  return sum;
+}
+
+sum(1, 2, 3, 4, 5);
+
+// 運用 Currying
+// 因為是不定長度參數 ...args，需指定個數
+var curriedSum = curry(sum, 5);
+
+curriedSum(1)(2)(3)(4)(5); // 15
+```
+
+## curry and map
+
+運用 Ramda 將一組數列都加上指定的數值。
+
+```js
+const add = (x, y) => x + y;
+
+// 作法ㄧ
+// 將 curry 和指定的數值，撰寫於 map 的 callback 中
+R.map(R.curry(add)(3))([30, 55, 42, 87, 66]);
+
+// 作法二
+// 將 curry 函式另行包裝，map 的 callback 中，加入包裝後的 curry 和數值
+const addX = R.curry(add);
+
+R.map(addX(3))([30, 55, 42, 87, 66]);
+```
+
+## 解構賦值
+
+```js
+function curryProps(fn, arity = 1) {
+  return (function nextCurried(prevArgsObj) {
+    return function curried(nextArgObj = {}) {
+      var [key] = Object.keys(nextArgObj);
+      var allArgsObj = Object.assign({}, prevArgsObj, {
+        [key]: nextArgObj[key],
+      });
+
+      if (Object.keys(allArgsObj).length >= arity) {
+        return fn(allArgsObj);
+      } else {
+        return nextCurried(allArgsObj);
+      }
+    };
+  })({});
+}
+```
+
+```js
+function move({ x = 0, y = 0, z } = {}) {
+  return [x, y, z];
+}
+
+// 一次只傳入一個屬性的物件
+curryProps(move, 3)({ x: 2 })({ z: 7 })({ y: 3 }); // [2, 3, 7]
+```
+
+## uncurry
+
+將 currying 轉為 uncurring。
+
+傳入的 `fn` 需為 **curry function**。
+
+```js
+const uncurry = (fn) => (...args) => {
+  let ret = fn;
+
+  for (let arg of args) {
+    // 內部實做 curry，每一個的回傳值都是 curry，直到參數傳完
+    ret = ret(arg);
+  }
+
+  return ret;
+};
+```
+
+> 參考 [Functional-Light-JS](https://github.com/getify/Functional-Light-JS/blob/master/manuscript/ch3.md#no-curry-for-me-please)
+
 ## 參考
 
 [Currying](https://ithelp.ithome.com.tw/articles/10192884)
+
+[再探 Currying 柯里化](https://ithelp.ithome.com.tw/articles/10195145)
