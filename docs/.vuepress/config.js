@@ -47,7 +47,7 @@ module.exports = {
           '/ES6/arrow-compare',
           '/ES6/template-literals',
           '/ES6/request-comparison',
-          '/ES6/async-await',
+          '/ES6/promise',
           '/ES6/lazyload-image',
         ],
       },

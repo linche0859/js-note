@@ -48,7 +48,7 @@ Box('a').map((x) => x.toUpperCase()).value; //'A'
 
 ## Why functor?
 
-利用 **抽象** 方式，藉由外部的 composition API 傳入，讓我們只需專心思考 What to do，而不用理會其中的狀態，並藉由同樣的將 Box 中的值取出。
+利用 **抽象** 方式，藉由外部的 composition API 傳入，讓我們只需專心思考 What to do，而不用理會其中的狀態，並藉由同樣的方式，將 Box 中的值取出。
 
 ## 參考
 
