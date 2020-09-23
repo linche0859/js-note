@@ -32,7 +32,7 @@
 
 > 可以參考連結的 [附圖](https://ithelp.ithome.com.tw/articles/10241001)
 
-假設今日是使用 Box 作為外殼，取值是 透過 `Box().value`，中間經過 mapped over 後，仍是透過 **類似的** 外殼做 `Box().value` 的取值。
+假設今日是使用 Box 作為外殼，取值是 透過 `Box().value`，中間經過 mapped over 後，仍是透過 **相似的** 外殼做 `Box().value` 的取值。
 
 ```js
 /**
@@ -46,12 +46,36 @@ const Box = (x) => ({
 Box('a').map((x) => x.toUpperCase()).value; //'A'
 ```
 
+### 透過 `fold` 取值
+
+假設要實踐傳入某一個字串數字 -> 去除前後空白 -> 轉成數字 -> 數值加一 -> 轉成 char code
+
+```js
+const Box = (x) => ({
+  map: (fn) => Box(fn(x)),
+  fold: (fn) => fn(x), // 取值 remove from the box
+});
+const nextCharForNumberString = (str) =>
+  Box(str)
+    .map((x) => x.trim())
+    .map((x) => parseInt(x))
+    .map((x) => x + 1)
+    .map((x) => String.fromCharCode(x))
+    .fold((x) => x);
+
+nextCharForNumberString(' 64'); // 'A'
+```
+
+對於每一個 `Box` 不會記錄目前的 x 值為何，只需將運算一一傳入，最後再透過 `fold` 將最終值取出。
+
 ## Why functor?
 
-利用 **抽象** 方式，藉由外部的 composition API 傳入，讓我們只需專心思考 What to do，而不用理會其中的狀態，並藉由同樣的方式，將 Box 中的值取出。
+利用 **抽象** 方式，藉由外部的 `fn` 傳入，讓我們只需專心思考 What to do，而不用理會目前的狀態(或是記憶狀態)。
 
 ## 參考
 
 [Functor 1](https://ithelp.ithome.com.tw/articles/10240162)
 
 [functor 函子](https://ithelp.ithome.com.tw/articles/10197535)
+
+[Functor Exercise 1](https://ithelp.ithome.com.tw/articles/10242568)
