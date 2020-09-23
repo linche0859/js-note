@@ -128,7 +128,17 @@ const addX = R.curry(add);
 R.map(addX(3))([30, 55, 42, 87, 66]);
 ```
 
-## 解構賦值
+## 參數順序調整
+
+因為傳入 curry 的 `fn` 參數，需要有順序性，而運用於解構參數，且維持 arity = 1 的情況就會有問題。
+
+```js
+const move = ({ x = 0, y = 0, z }) => [x, y, z];
+
+R.curry(move)({ x: 1 })({ y: 2 })({ z: 3 }); // Uncaught TypeError: R.curry(...)(...) is not a function
+```
+
+### 改寫 curry function
 
 ```js
 function curryProps(fn, arity = 1) {
@@ -154,6 +164,7 @@ function move({ x = 0, y = 0, z } = {}) {
   return [x, y, z];
 }
 
+// 不用再煩惱傳入的順序，和達到 arity = 1
 // 一次只傳入一個屬性的物件
 curryProps(move, 3)({ x: 2 })({ z: 7 })({ y: 3 }); // [2, 3, 7]
 ```

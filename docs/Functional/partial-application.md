@@ -61,7 +61,9 @@ R.partialRight(foo, '在你的右邊')(1, 2, 3); // "123在,你,的,右,邊"
 R.partialRight(foo, '在你的右邊')(1, 2, 3, 4); // "1234,在,你,的,右,邊"
 ```
 
-## 解構賦值
+## 參數順序調整
+
+當傳入的參數為解構類型時，需做以下的改寫：
 
 ```js
 function partialProps(fn, presetArgsObj) {

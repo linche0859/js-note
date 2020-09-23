@@ -2,34 +2,34 @@
 
 ## pipe
 
-將多個 `Function` 進行封裝，接著同步的執行
+將多個 `Function` 進行封裝，接著同步的執行。
 
 ### 實作介面
 
 ```js
-pipe = (...fns) => x => fns.reduce((v, f) => f(v), x);
+pipe = (...fns) => (x) => fns.reduce((v, f) => f(v), x);
 ```
 
 ### 範例
 
 ```js
-const getName = person => person.name;
+const getName = (person) => person.name;
 
-const uppercase = string => string.toUpperCase();
+const uppercase = (string) => string.toUpperCase();
 
-const get6Characters = string => string.substring(0, 6);
+const get6Characters = (string) => string.substring(0, 6);
 
-const reverse = string =>
+const reverse = (string) =>
   string
     .split('')
     .reverse()
     .join('');
 
 const person = {
-  name: 'Buckethead'
+  name: 'Buckethead',
 };
 
-const pipe = (...functions) => value => {
+const pipe = (...functions) => (value) => {
   return functions.reduce(
     (currentValue, currentFunction) => currentFunction(currentValue),
     value
@@ -43,26 +43,80 @@ const pipeData = pipe(getName, uppercase, get6Characters, reverse)(person);
 
 ## compose
 
-將 `pipe` 轉換成另一個方向執行
+將 `pipe` 轉換成另一個方向執行，即從右到左的運作。
 
 ### 實作介面
 
 ```js
-compose = (...fns) => x => fns.reduceRight((v, f) => f(v), x);
+const compose = (...fns) => (x) => fns.reduceRight((v, f) => f(v), x);
+
+// 或
+
+const compose = (...fns) => (x) => {
+  const list = fns.slice();
+  while (list.length) {
+    x = list.pop()(x);
+  }
+  return x;
+};
+
+// 或使用 lazy-evaluation
+//...
 ```
+
+### lazy-evaluation
+
+1. 與其每一次都計算後將結果再進到下一個循環，這次 defer 延遲所有的運算
+1. 每一次的循環都會返回一個包裹層級更多的函數
+1. reduce 最後結果得到一個函數
+
+   ```js
+   function composed(...args){
+           return fnN(...fn2( ( fn1( ...args ) )...)
+   }
+   ```
+
+1. 傳入參數後，最終組合函數再由內到外處理參數
 
 ### 範例
 
-```js
-const composeData = compose(
-  reverse,
-  get6Characters,
-  uppercase,
-  getName
-)(person);
-```
+- 延伸 `pipe` 的範例，使用 `compose` 撰寫
 
-> 輸出結果：TEKCUB
+  ```js
+  const composeData = compose(
+    reverse,
+    get6Characters,
+    uppercase,
+    getName
+  )(person);
+  ```
+
+  > 輸出結果：TEKCUB
+
+- 將字串分解 -> 去除陣列重複元素 -> 過濾小於等於 4 長度的值
+
+  ```js
+  function splitString(str) {
+    return String(str)
+      .toLowerCase()
+      .split(/\s|\b/)
+      .filter(function alpha(v) {
+        return /^[\w]+$/.test(v);
+      });
+  }
+
+  function deDuplicate(list) {
+    return Array.from(new Set(list));
+  }
+
+  function skipShortWords(words) {
+    return words.filter((word) => word.length > 4);
+  }
+
+  const longWords = compose(skipShortWords, deDuplicate, splitString);
+
+  const result = longWords(text);
+  ```
 
 ## 參考
 
