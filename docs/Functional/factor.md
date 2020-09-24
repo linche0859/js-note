@@ -68,6 +68,46 @@ nextCharForNumberString(' 64'); // 'A'
 
 對於每一個 `Box` 不會記錄目前的 x 值為何，只需將運算一一傳入，最後再透過 `fold` 將最終值取出。
 
+### Function 當參數
+
+上面的 Box 範例，都是藉由 value 當參數，如果以 Function 作為參數，則會如下方：
+
+```js
+const Box = (f) => ({
+  map: (g) => Box((x) => g(f(x))),
+  runEffects: (x) => f(x),
+});
+```
+
+---
+
+假如需要將某一數值 -> 加一 -> 乘二 -> 三次方 -> 輸出
+
+```js
+function logSomething(x) {
+  console.log('Hello World');
+  return x;
+}
+
+const increment = (x) => x + 1;
+const double = (x) => x * 2;
+const cube = (x) => Math.pow(x, 3);
+
+Box(logSomething)
+  .map(increment)
+  .map(double)
+  .map(cube)
+  .runEffects(0); // 8
+```
+
+原理有些像 `compose`：
+
+```js
+cube(double(increment(logSomething(x))));
+```
+
+但用 Box 這種 functor 能保證每次回傳 **一定都是相同的 data type**。
+
 ## Why functor?
 
 利用 **抽象** 方式，藉由外部的 `fn` 傳入，讓我們只需專心思考 What to do，而不用理會目前的狀態(或是記憶狀態)。
@@ -79,3 +119,5 @@ nextCharForNumberString(' 64'); // 'A'
 [functor 函子](https://ithelp.ithome.com.tw/articles/10197535)
 
 [Functor Exercise 1](https://ithelp.ithome.com.tw/articles/10242568)
+
+[Functor 3: 程式碼解說篇](https://ithelp.ithome.com.tw/articles/10242568#response-315591)
