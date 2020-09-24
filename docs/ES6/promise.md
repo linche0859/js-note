@@ -51,6 +51,64 @@
 
 - 回傳一個被否決的 promise，則 then 回傳之 promise 以此值被否決
 
+## Promise.prototype.finally
+
+- 回傳值永遠是 Promise，而該 promise 的 `PromiseState` 取決於上一個 promise chain。
+
+  ```js
+  // Promise {<fulfilled>: "OK"}
+  Promise.resolve('OK').finally(() => {
+    console.log('finally');
+  });
+
+  // Promise {<rejected>: "Error"}
+  Promise.reject('Error').finally(() => {
+    console.log('finally');
+  });
+  ```
+
+- `Promise.prototype.finally()` 的 callback 沒有 argument
+
+  `.then()` 和 `.catch()` 的 callback 會有 argument，而該 argument 是在 promise chain 中，前一個 Promise 的 fulfilled 值或 rejected 值。
+
+  但 `Promise.prototype.finally()` 的 callback 是沒有 argument 的，若你還是寫了 argument，其值也會是 `undefined`，不管 promise chain 中的前一個 Promise 的 fulfilled 或 rejected。
+
+  ```js
+  Promise.resolve('OK').finally((value) => {
+    console.log(value); // undefined
+  });
+  ```
+
+- `Promise.prototype.finally()` 的 callback 會被忽略 `return`
+
+  但回傳的 Promise 的 fulfilled 值或 rejected 值會是 **前一個** promise chain 中的結果。
+
+  ```js
+  Promise.resolve('OK')
+    .finally(() => {
+      console.log('finally...');
+      return 'finally';
+    })
+    .then((value) => {
+      console.log(value); // OK
+    });
+
+  // Promise {<fulfilled>: undefined}
+  ```
+
+- `Promise.prototype.finally()` 的 callback 中使用 `throw`
+
+  會讓回傳的 Promise rejected。
+
+  ```js
+  Promise.resolve('OK').finally(() => {
+    console.log('finally');
+    throw new Error('Oops');
+  });
+
+  // Promise {<rejected>: Error: Oops
+  ```
+
 ## Async function & await expression
 
 ### Async function 的回傳值永遠是 `Promise`
@@ -168,6 +226,8 @@ const clickHandler = async () => {
 ## 參考
 
 [Async Functions & await expression](https://ithelp.ithome.com.tw/articles/10241334)
+
+[Promise.prototype.finally()](https://ithelp.ithome.com.tw/articles/10242649)
 
 [async/await 的奇淫技巧](https://fred-zone.blogspot.com/2017/04/javascript-asyncawait.html)
 
