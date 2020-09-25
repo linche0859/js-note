@@ -61,7 +61,7 @@ module.exports = {
           '/Functional/spread',
           '/Functional/partial-application',
           '/Functional/common',
-          '/Functional/factor',
+          '/Functional/functor',
         ],
       },
       {

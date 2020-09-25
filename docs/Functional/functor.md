@@ -1,4 +1,4 @@
-# Factor
+# Functor
 
 > A functor is simply something that can be mapped over
 
@@ -12,7 +12,7 @@
 
 簡單來說，傳入一個函式改變內部的資料，但維持外殼不變。
 
-可以用以下來檢視，因為 Factor 必須滿足：
+可以用以下來檢視，因為 Functor 必須滿足：
 
 - 單元律
   ```js
