@@ -16,7 +16,9 @@
 
 ## Named Capture Groups
 
-使用 `{?<name>...}`，語法為 capture group 命名，且每個名稱都是唯一。
+- 使用 `{?<name>...}`，語法為 capture group 命名，且每個名稱都是唯一。
+- 只有使用 named capture group 才會在 RegExp 結果物件中建立 `groups` property，否則為 `undefined`
+- `groups` property 內不包含 numbered group property，只包含 named group。
 
 以上面的日期格式範例，可以改為：
 
@@ -31,6 +33,25 @@ dateFormat.exec('2020-09-25');
 const {
   groups: { year, month, day },
 } = dateFormat.exec('2020-09-25');
+```
+
+### String.prototype.replace()
+
+```js
+const dateFormat = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/u;
+'2020-09-25'.replace(dateFormat, '$<day>/$<month>/$<year>'); // 25/09/2020
+```
+
+若 `String.prototype.replace()` 的第二個 argument 是 callback 函數，可透過名為 `groups` 的新參數來存取 named capture group。
+
+```js
+const dateFormat = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/u;
+'2020-09-25'.replace(dateFormat, (...args) => {
+  let { day, month, year } = args[args.length - 1]; // 最後一個參數是 groups
+  return `${day}/${month}/${year}`;
+});
+
+// 25/09/2020
 ```
 
 ## Backreferences (反向引用)

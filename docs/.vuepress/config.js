@@ -49,6 +49,7 @@ module.exports = {
           '/ES6/request-comparison',
           '/ES6/promise',
           '/ES6/lazyload-image',
+          '/ES6/regexp',
         ],
       },
       {
