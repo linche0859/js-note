@@ -1,4 +1,4 @@
-# RefExp
+# RegExp
 
 ## Numbered Capture Groups
 
@@ -110,6 +110,65 @@ stringFormat.exec(`'Titan'`);
 // {quote: "'", string: "Titan"}
 ```
 
+## Lookbehind Assertions
+
+lookbehind assertions 分為 positive 和 negative。
+
+使用 lookbehind assertions 可以確保某個 pattern 之前有或沒有另一個 pattern，例如：可以 match 美元金額，但不 capture
+
+### Positive Lookbehind Assertions：`(?<=...)`
+
+`(?<=x)y` 代表 `x` 後面若接著 `y` 時，才會 match `y`。
+
+例如：match 美元金額而不 capture 美元符號：
+
+```js
+const pattern = /(?<=\$)\d+(\.\d*)?/;
+
+pattern.exec('$59.21');
+// ["59.21", ".21", index: 1, input: "$59.21", groups: undefined]
+
+pattern.exec('€59.21');
+// null
+```
+
+### Negative Lookbehind Assertions：`(?<!...)`
+
+`(?<!x)y` 代表 `x` 後面不是接著 `y` 時，才會 match `y`。
+
+例如：不會 match 美元金額，但會 match 歐元金額：
+
+```js
+const pattern = /(?<!\$)\d+(?:\.\d*)/;
+
+pattern.exec('$9.87');
+// null
+
+pattern.exec('€9.87');
+// ["9.87", index: 1, input: "€9.87", groups: undefined]
+```
+
+如果要 match 美元金額並只 capture 小數部份，可以這樣實作：
+
+```js
+const pattern = /(?<=\$\d+\.)\d+/;
+
+pattern.exec('$59.21');
+// ["21", index: 4, input: "$59.21", groups: undefined]
+```
+
+:::tip 提醒
+
+pattern 通常從最左邊的 sub-pattern 開始 match，若左邊的 sub-pattern match 成功，就會繼續移動至右邊的 sub-pattern。
+
+當包含在 lookbehind assertion 中時，match 順序會相反。pattern 會從最右邊的 sub-pattern 開始 match，然後向左取代。
+
+例如：`/(?<=\$\d+\.)\d+/` pattern 會先找到一個數字，並確定前面接著 `.`，然後 `\d+` 從 `.` 開始的，最後 `\$` 從 assertion 中的 `\d+` 位置開始。所以回溯 (backtracking) 的方向也會相反。
+
+:::
+
 ## 參考
 
 [RegExp Named Capture Groups](https://ithelp.ithome.com.tw/articles/10243957)
+
+[RegExp Lookbehind Assertions](https://ithelp.ithome.com.tw/articles/10245116)
