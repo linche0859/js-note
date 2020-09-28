@@ -63,6 +63,7 @@ module.exports = {
           '/Functional/partial-application',
           '/Functional/common',
           '/Functional/functor',
+          '/Functional/monad',
         ],
       },
       {

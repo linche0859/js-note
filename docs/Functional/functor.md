@@ -124,7 +124,7 @@ const Box = (f) => ({
 
 將 `map` 和 `flatMap` 做成鏈式的串接方法。
 
-```js{4}
+```js{4,5,6,7}
 const Box = (f) => ({
   map: (g) => Box((x) => g(f(x))),
   flatMap: (x) => f(x),

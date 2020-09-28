@@ -24,6 +24,7 @@
 - [Partial Application](/Functional/partial-application.md)
 - [常用的 Ramda API](/Functional/common.md)
 - [Functor](/Functional/functor.md)
+- [Monad](/Functional/monad.md)
 
 ## RxJS
 
