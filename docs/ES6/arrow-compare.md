@@ -59,8 +59,6 @@ Ming.family.fn();
 
 ## 立即函式的 `this` 作用域
 
-## DOM 的 `this` 綁定
-
 ```js
 (function() {
   var myName = '立即函式作用域';
@@ -75,6 +73,8 @@ Ming.family.fn();
 ```
 
 因立即函式屬於 `simple call`，`this` 指向全域。
+
+## DOM 的 `this` 綁定
 
 ```js
 (function() {
