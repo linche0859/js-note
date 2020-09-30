@@ -74,13 +74,13 @@ Ming.family.fn();
 
 因立即函式屬於 `simple call`，`this` 指向全域。
 
-## DOM 的 `this` 綁定
-
 ```js
 (function() {
   console.log(this === window); // 立即函式的 this 與全域相同
 })();
 ```
+
+## DOM 的 `this` 綁定
 
 ```js
 const elem = document.querySelector('p');

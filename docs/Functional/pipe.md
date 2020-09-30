@@ -7,18 +7,25 @@
 ### 實作介面
 
 ```js
-pipe = (...fns) => (x) => fns.reduce((v, f) => f(v), x);
+const pipe = (...fns) => (x) => fns.reduce((v, f) => f(v), x);
+
+// 或
+
+const pipe = (...fns) => (x) => {
+  let list = fns.slice();
+  while (list.length) {
+    x = list.shift()(x);
+  }
+  return x;
+};
 ```
 
 ### 範例
 
 ```js
 const getName = (person) => person.name;
-
 const uppercase = (string) => string.toUpperCase();
-
 const get6Characters = (string) => string.substring(0, 6);
-
 const reverse = (string) =>
   string
     .split('')
@@ -27,13 +34,6 @@ const reverse = (string) =>
 
 const person = {
   name: 'Buckethead',
-};
-
-const pipe = (...functions) => (value) => {
-  return functions.reduce(
-    (currentValue, currentFunction) => currentFunction(currentValue),
-    value
-  );
 };
 
 const pipeData = pipe(getName, uppercase, get6Characters, reverse)(person);
@@ -64,7 +64,23 @@ const compose = (...fns) => (x) => {
 //...
 ```
 
-### lazy-evaluation
+### 多參數輸入
+
+使用 lazy-evaluation 包裝：
+
+```js
+const compose = (...fns) =>
+  fns.reduceRight((fn1, fn2) => (...args) => fn2(fn1(...args)));
+```
+
+例如，將每個值加三後，再做累加：
+
+```js
+const add3 = (...args) => args.map((x) => x + 3);
+const total = (args) => args.reduce((acc, cur) => acc + cur, 0);
+
+compose(total, add3)(1, 2, 3, 4, 5); // 30
+```
 
 1. 與其每一次都計算後將結果再進到下一個循環，這次 defer 延遲所有的運算
 1. 每一次的循環都會返回一個包裹層級更多的函數
@@ -72,7 +88,7 @@ const compose = (...fns) => (x) => {
 
    ```js
    function composed(...args){
-           return fnN(...fn2( ( fn1( ...args ) )...)
+      return fnN(...fn2( ( fn1( ...args ) )...)
    }
    ```
 

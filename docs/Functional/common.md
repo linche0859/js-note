@@ -62,7 +62,7 @@ fn1.then(someHandlerFunc).then(constant(fn2)).then(someHandlerFunc);
 
 ## complement and when
 
-- complement：取反(取補集)
+- complement：取反(取補集)，回傳 **反向** 函式執行的結果
 
   ```js
   const complement = (fn) => (...args) => !fn(...args);
@@ -74,7 +74,7 @@ fn1.then(someHandlerFunc).then(constant(fn2)).then(someHandlerFunc);
   const when = (fn1, fn2) => (...args) => (fn1(...args) ? fn2(...args) : args);
   ```
 
-### 結合運用
+## 綜合運用
 
 輸入大於長度 5 的值，才做顯示。
 
@@ -85,6 +85,40 @@ const isShortEnough = (x) => x.length <= 5;
 const f2 = R.partialRight(R.when, [output]);
 
 f2(R.complement(isShortEnough))('Hello World'); // 成功輸出
+```
+
+---
+
+找出返回的 API 值中，用戶名稱為 `Scott`，且未完成任務，輸出僅要四個欄位，並按照 `dueDate` 排序。
+
+```js
+const postUrl =
+  'https://raw.githubusercontent.com/linche0859/json-server/master/db.json';
+
+const tryCatch = async (fn) => {
+  try {
+    return await fn();
+  } catch (e) {
+    return new Error(e);
+  }
+};
+
+(async function() {
+  const response = await tryCatch(() => fetch(postUrl));
+  const data = await response.json();
+  const getUncompleted = R.pipe(
+    R.prop('tasks'),
+    R.filter(R.propEq('username', 'Scott')),
+    R.reject(R.propEq('complete', true)),
+    R.map(R.pick(['id', 'title', 'dueDate', 'priority'])),
+    R.sortBy(R.prop('dueDate'))
+  );
+})();
+
+// [
+//    {id: 110, title: "Rename everything", dueDate: "2013-11-15", priority: "medium"}
+//    {id: 104, title: "Do something", dueDate: "2013-11-29", priority: "high"}
+// ]
 ```
 
 ## 參考

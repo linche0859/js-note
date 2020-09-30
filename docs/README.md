@@ -23,7 +23,9 @@
 - [Spread and Gather](/Functional/spread.md)
 - [Partial Application](/Functional/partial-application.md)
 - [常用的 Ramda API](/Functional/common.md)
+- [Pointfree](/Functional/pointfree.md)
 - [Functor](/Functional/functor.md)
+- [Applicative](/Functional/applicative.md)
 - [Monad](/Functional/monad.md)
 
 ## RxJS
