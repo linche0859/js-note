@@ -6,6 +6,8 @@
 
 我們常用在 `<input type=file>` 中拿到的 `File` 物件也是一種特殊的 `Blob` 物件，其繼承了 Blob 的屬性。
 
+---
+
 實例化 Blob 物件，其建構式有兩個參數：
 
 > new Blob(array, options);
@@ -19,7 +21,7 @@
 - size: 表示儲存的資料，總共佔了多少位元(byte)
 - type: 表示儲存的資料格式(MIME type)
 
-### FileReader
+## FileReader
 
 透過 `FileReader` 來讀取 Blob 中的內容，並且能轉換成 `text`、`ArrayBuffer` 等格式。
 
@@ -45,7 +47,7 @@ fileReader.readAsArrayBuffer(blob);
 // }
 ```
 
-### `URL.createObjectUrl(Blob)`
+## `URL.createObjectUrl(Blob)`
 
 透過 `URL.createObjectUrl(Blob)` 來產生對應的 Blob url，用於 Browser 上的 `a tag` 或是 `img src`，便於下載或是顯示圖片。
 
@@ -74,7 +76,7 @@ URL.revokeObjectURL(url);
 
 :::
 
-### 拆分檔案數據，分次傳送
+## 拆分檔案數據，分次傳送
 
 利用 `Blob.prototype.slice()` 複製的方式，達到切分的功能。
 
