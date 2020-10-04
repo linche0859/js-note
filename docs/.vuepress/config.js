@@ -50,6 +50,7 @@ module.exports = {
           '/ES6/promise',
           '/ES6/lazyload-image',
           '/ES6/regexp',
+          '/ES6/file-api',
         ],
       },
       {
