@@ -190,11 +190,11 @@ Effect.of = (val) => Effect(() => val);
 const $ = (selector) => Effect.of(document.querySelector(selector));
 
 const userBioHTML = Effect.of(window)
-  .map((x) => x.myAppConf.selectors['user-bio'])
-  .map($) // 回傳：val => Effect(() => val)
-  .flatMap() // f：val => document.querySelector('user-bio')
+  .map((x) => x.myAppConf.selectors['user-bio']) // // Effect('.userbio')
+  .map($) // 回傳：val => Effect(() => val)，結果： Effect(Effect(<div>))
+  .flatMap() // f：val => document.querySelector('user-bio')，結果：Effect(<div>)
   // .map(log)
-  .map((x) => x.innerHTML)
+  .map((x) => x.innerHTML) // Effect('<h2>User Biography</h2>')
   .runEffects(); // <h2>User Biography</h2>
 
 // 或使用 chain 簡潔程式碼
