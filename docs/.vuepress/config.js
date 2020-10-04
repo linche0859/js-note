@@ -55,14 +55,18 @@ module.exports = {
       {
         title: 'Functional Programming',
         children: [
+          '/Functional/pure',
           '/Functional/pipe',
           '/Functional/array',
           '/Functional/curry',
           '/Functional/composition',
           '/Functional/spread',
           '/Functional/partial-application',
+          '/Functional/pointfree',
           '/Functional/common',
           '/Functional/functor',
+          '/Functional/applicative',
+          '/Functional/monad',
         ],
       },
       {

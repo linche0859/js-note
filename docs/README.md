@@ -12,10 +12,11 @@
 - [Fetch API 和 Axios](/ES6/request-comparison.md)
 - [非同步機制](/ES6/promise.md)
 - [透過 lazy loading 延遲載入圖片](/ES6/lazyload-image.md)
-- [RefExp](/ES6/regexp.md)
+- [RegExp](/ES6/regexp.md)
 
 ## Functional Programming
 
+- [Pure Function](/Functional/pure.md)
 - [pipe 和 compose](/Functional/pipe.md)
 - [陣列運用](/Functional/array.md)
 - [Curry](/Functional/curry.md)
@@ -23,7 +24,10 @@
 - [Spread and Gather](/Functional/spread.md)
 - [Partial Application](/Functional/partial-application.md)
 - [常用的 Ramda API](/Functional/common.md)
+- [Pointfree](/Functional/pointfree.md)
 - [Functor](/Functional/functor.md)
+- [Applicative](/Functional/applicative.md)
+- [Monad](/Functional/monad.md)
 
 ## RxJS
 
