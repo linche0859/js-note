@@ -153,7 +153,7 @@ const {
 
 ```js
 const axios = require('axios');
-// 遞給 axios.interceptors.request.use 的第一個參數是用於修改所有請求的請求配置的函數
+// 遞給 axios.interceptors.request.use 的第一個參數是用於修改所有請求的請求配置的函式
 // 第二個參數是一個錯誤處理程序，用於處理所有請求的錯誤
 axios.interceptors.request.use(
   (config) => {

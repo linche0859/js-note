@@ -57,6 +57,7 @@ module.exports = {
         title: 'Functional Programming',
         children: [
           '/Functional/pure',
+          '/Functional/recursion',
           '/Functional/pipe',
           '/Functional/array',
           '/Functional/curry',

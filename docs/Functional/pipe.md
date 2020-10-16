@@ -70,29 +70,30 @@ const compose = (...fns) => (x) => {
 
 ```js
 const compose = (...fns) =>
-  fns.reduceRight((fn1, fn2) => (...args) => fn2(fn1(...args)));
+  fns.reduceRight((fn1, fn2) => (...args) => fn2(...fn1(...args)));
 ```
 
 例如，將每個值加三後，再做累加：
 
 ```js
 const add3 = (...args) => args.map((x) => x + 3);
-const total = (args) => args.reduce((acc, cur) => acc + cur, 0);
+const total = (...args) => args.reduce((acc, cur) => acc + cur, 0);
 
 compose(total, add3)(1, 2, 3, 4, 5); // 30
+compose(total, add3, add3)(1, 2, 3, 4, 5); // 57
 ```
 
 1. 與其每一次都計算後將結果再進到下一個循環，這次 defer 延遲所有的運算
-1. 每一次的循環都會返回一個包裹層級更多的函數
-1. reduce 最後結果得到一個函數
+1. 每一次的循環都會返回一個包裹層級更多的函式
+1. reduce 最後結果得到一個函式
 
    ```js
    function composed(...args){
-      return fnN(...fn2( ( fn1( ...args ) )...)
+      return fnN(...fn2(...fn1(...args))
    }
    ```
 
-1. 傳入參數後，最終組合函數再由內到外處理參數
+1. 傳入參數後，最終組合函式再由內到外處理參數
 
 ### 範例
 

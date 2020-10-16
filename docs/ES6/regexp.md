@@ -42,7 +42,7 @@ const dateFormat = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/u;
 '2020-09-25'.replace(dateFormat, '$<day>/$<month>/$<year>'); // 25/09/2020
 ```
 
-若 `String.prototype.replace()` 的第二個 argument 是 callback 函數，可透過名為 `groups` 的新參數來存取 named capture group。
+若 `String.prototype.replace()` 的第二個 argument 是 callback 函式，可透過名為 `groups` 的新參數來存取 named capture group。
 
 ```js
 const dateFormat = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/u;

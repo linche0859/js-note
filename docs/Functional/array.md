@@ -5,9 +5,9 @@
 將 **二維陣列** 做展平，並返回一個新陣列
 
 ```js
-Array.prototype.concatAll = function () {
+Array.prototype.concatAll = function() {
   var results = [];
-  this.forEach(function (subArray) {
+  this.forEach(function(subArray) {
     // ------------ INSERT CODE HERE! ----------------------------
     // Add all the items in each subArray to the results array.
     // ------------ INSERT CODE HERE! ----------------------------
@@ -129,15 +129,15 @@ var movieLists = [
 ];
 
 const result = movieLists
-  .map(function (movie) {
+  .map(function(movie) {
     return (
       movie.videos
-        .map(function (video) {
+        .map(function(video) {
           return video.boxarts
-            .filter(function (boxart) {
+            .filter(function(boxart) {
               return boxart.width === 150 && boxart.height === 200;
             })
-            .map(function (boxart) {
+            .map(function(boxart) {
               return { id: video.id, title: video.title, boxart: boxart.url };
             });
         })
@@ -154,11 +154,11 @@ const result = movieLists
 將 `map()` 和 `concatAll()` 做鍊式結合
 
 ```js
-Array.prototype.concatMap = function (projectionFunctionThatReturnsArray) {
+Array.prototype.concatMap = function(projectionFunctionThatReturnsArray) {
   return (
     // 1. 對傳入的陣列作客制的返回值
     // item 為傳入陣列的各項值
-    this.map(function (item) {
+    this.map(function(item) {
       // ------------   INSERT CODE HERE!  ----------------------------
       // Apply the projection function to each item. The projection
       // function will return a new child array. This will create a
@@ -178,7 +178,7 @@ var spanishFrenchEnglishWords = [
   ['dos', 'deux', 'two'],
 ];
 // collect all the words for each number, in every language, in a single, flat list
-var allWords = [0, 1, 2].concatMap(function (item) {
+var allWords = [0, 1, 2].concatMap(function(item) {
   return spanishFrenchEnglishWords[item];
 });
 // ["cero","rien","zero","uno","un","one","dos","deux","two"]
@@ -210,7 +210,7 @@ console.log(movieLists);
 自製 `reduce` 函式，和 ES5 的 `reduce` 不一樣，且始終回傳 **陣列**
 
 ```js
-Array.prototype.reduce = function (combiner, initialValue) {
+Array.prototype.reduce = function(combiner, initialValue) {
   var counter, accumulatedValue;
 
   // If the array is empty, do nothing
@@ -250,8 +250,8 @@ Array.prototype.reduce = function (combiner, initialValue) {
 ### 製作原理
 
 ```js
-// 向 Array 添加靜態函數
-Array.zip = function (left, right, combinerFunction) {
+// 向 Array 添加靜態函式
+Array.zip = function(left, right, combinerFunction) {
   var counter,
     results = [];
   // zip返回的陣列，將僅與最小的輸入陣列一樣大
@@ -263,7 +263,7 @@ Array.zip = function (left, right, combinerFunction) {
   return results;
 };
 
-Array.zip([1, 2, 3], [4, 5, 6, 7], function (left, right) {
+Array.zip([1, 2, 3], [4, 5, 6, 7], function(left, right) {
   return left + right;
 });
 
@@ -302,11 +302,11 @@ Array.zip(movies, bookmarks, (left, right) => {
 找出最小 box art url 和 中間時間的 interesting moment
 
 ```js
-const result = movieLists.concatMap(function (movieList) {
-  return movieList.videos.concatMap(function (video) {
+const result = movieLists.concatMap(function(movieList) {
+  return movieList.videos.concatMap(function(video) {
     return Array.zip(
       // 左邊的陣列
-      video.boxarts.reduce(function (acc, curr) {
+      video.boxarts.reduce(function(acc, curr) {
         if (acc.width * acc.height < curr.width * curr.height) {
           return acc;
         } else {
@@ -314,11 +314,11 @@ const result = movieLists.concatMap(function (movieList) {
         }
       }),
       // 右邊的陣列
-      video.interestingMoments.filter(function (interestingMoment) {
+      video.interestingMoments.filter(function(interestingMoment) {
         return interestingMoment.type === 'Middle';
       }),
       // callback
-      function (boxart, interestingMoment) {
+      function(boxart, interestingMoment) {
         return {
           id: video.id,
           title: video.title,
@@ -477,28 +477,28 @@ const bookmarks = [
   { videoId: 654356453, time: 984934 },
 ];
 
-return lists.map(function (list) {
+return lists.map(function(list) {
   return {
     name: list.name,
     videos: videos
-      .filter(function (video) {
+      .filter(function(video) {
         return video.listId === list.id;
       })
-      .concatMap(function (video) {
+      .concatMap(function(video) {
         return Array.zip(
-          bookmarks.filter(function (bookmark) {
+          bookmarks.filter(function(bookmark) {
             return bookmark.videoId === video.id;
           }),
           boxarts
-            .filter(function (boxart) {
+            .filter(function(boxart) {
               return boxart.videoId === video.id;
             })
-            .reduce(function (acc, curr) {
+            .reduce(function(acc, curr) {
               return acc.width * acc.height < curr.width * curr.height
                 ? acc
                 : curr;
             }),
-          function (bookmark, boxart) {
+          function(bookmark, boxart) {
             return {
               id: video.id,
               title: video.title,

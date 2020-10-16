@@ -18,6 +18,7 @@
 ## Functional Programming
 
 - [Pure Function](/Functional/pure.md)
+- [Recursions](/Functional/recursions.md)
 - [pipe 和 compose](/Functional/pipe.md)
 - [陣列運用](/Functional/array.md)
 - [Curry](/Functional/curry.md)

@@ -4,7 +4,7 @@
 
 > All for one
 
-場合：將兩個函數組合，比如說把 A function 傳入 B function ，但此時 B function 傳入的參數跟 A function 數量不符合。
+場合：將兩個函式組合，比如說把 A function 傳入 B function ，但此時 B function 傳入的參數跟 A function 數量不符合。
 
 ```js
 const unary = (fn) => (arg) => fn(arg);
@@ -74,6 +74,27 @@ fn1.then(someHandlerFunc).then(constant(fn2)).then(someHandlerFunc);
   const when = (fn1, fn2) => (...args) => (fn1(...args) ? fn2(...args) : args);
   ```
 
+## memoizeWith
+
+確認函式在第一次執行過後，之後再有同樣輸入值會返回快取結果，而不是重新計算。
+
+```js
+let count = 0;
+const factorial = R.memoizeWith(R.identity, (n) => {
+  count++;
+  let value = 1;
+  for (let i = 0; i <= n; i++) {
+    value = value * i;
+  }
+  return value;
+});
+
+factorial(5); // 120
+factorial(5); // 120
+factorial(5); // 120
+count; // 1
+```
+
 ## 綜合運用
 
 輸入大於長度 5 的值，才做顯示。
@@ -126,3 +147,5 @@ const tryCatch = async (fn) => {
 [敲敲打打玩轉 function](https://ithelp.ithome.com.tw/articles/10194258)
 
 [Pointfree 無點風格](https://ithelp.ithome.com.tw/articles/10195632)
+
+[Referential Transparent 引用透明](https://ithelp.ithome.com.tw/articles/10196689)

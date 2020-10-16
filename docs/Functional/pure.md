@@ -1,6 +1,6 @@
 # Pure Function
 
-若一個函數符合下列需求，即可被認定為純函數：
+若一個函式符合下列需求，即可被認定為純函式：
 
 - 沒有任合可觀察的 side causes/effects
 - 相同的輸入，永遠會得到相同的輸出
@@ -28,7 +28,7 @@ checkAge(20); // true
 - 讓變數為常數，不可以重新賦值，如：`Math.PI`
 - `Object.freeze`
 
-## 陣列的純函數
+## 陣列的純函式
 
 當我們將陣列做函式的參數引入，如果陣列在函式的外層做內容的修改，也會影響函式的輸出結果。
 
@@ -112,10 +112,10 @@ function rememberNumbers(...nums) {
 
 ---
 
-但這時 `rememberNumbers` 還不是純函數，因為當 `fn` 是 `console.log` 時，還是會被汙染。
+但這時 `rememberNumbers` 還不是純函式，因為當 `fn` 是 `console.log` 時，還是會被汙染。
 
 所以，既然無法定義出完美純粹的 function，我們可以花力氣 **提高純度**，這樣對我們的程式信心就越高，進而使得可讀性更高。
 
 ## 參考
 
-[Pure Function 純函數](https://ithelp.ithome.com.tw/articles/10196562)
+[Pure Function 純函式](https://ithelp.ithome.com.tw/articles/10196562)

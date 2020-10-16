@@ -86,11 +86,11 @@ const curry = (fn, ARITY = fn.length, nextCurried) =>
 
 1. 初始 `[]` 做為 prevArgs，收集已傳入的參數
 1. 多傳入 nextCurried 做為遞迴的具名 arrow function
-1. 每當傳入參數時，便會回傳 nextCurried()，直到收集到足夠的實參，就利用這些實參，呼叫原函數 fn
+1. 每當傳入參數時，便會回傳 nextCurried()，直到收集到足夠的實參，就利用這些實參，呼叫原函式 fn
 
 ### 使用限制
 
-如果 `length` 不明確的函數：包含預設參數、destructing、或不定長度參數 `...args`，便要指定明確的參數個數傳入。
+如果 `length` 不明確的函式：包含預設參數、destructing、或不定長度參數 `...args`，便要指定明確的參數個數傳入。
 
 ```js
 function sum(...args) {

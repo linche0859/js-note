@@ -1,6 +1,6 @@
 # Partial Application
 
-一種減少函數參數個數 `Arity` 的流程(`Arity` 指的是形式參數 parameter 的個數)。
+一種減少函式參數個數 `Arity` 的流程(`Arity` 指的是形式參數 parameter 的個數)。
 
 ---
 
@@ -84,4 +84,4 @@ f2({ x: 1, z: 6 }); // [1, 2, 6]
 
 ## 參考
 
-[Partial Application 偏函數應用](https://ithelp.ithome.com.tw/articles/10194837)
+[Partial Application 偏函式應用](https://ithelp.ithome.com.tw/articles/10194837)
