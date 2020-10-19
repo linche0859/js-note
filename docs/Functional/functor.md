@@ -28,6 +28,31 @@
 
 ---
 
+任何具有 `map` 方法（映射關係）的資料結構，都可以視為 functor：
+
+```js
+class Wrapper {
+  constructor(value) {
+    this.value = value;
+  }
+  map(f) {
+    return new Wrapper(f(this.value));
+  }
+}
+```
+
+`Wrapper` 是一個只能放一個值的容器，其中含有 `map` 方法接受一個函數 `f` 當參數，然後 return 一個新的 functor，而裡面的值是被映射後的值。
+
+實際應用：
+
+```js
+const something = new Wrapper(2);
+
+console.log(something); // { value: 2 }
+
+something.map((value) => value + 3); // Wrapper(5)
+```
+
 ## Box
 
 > 可以參考連結的 [附圖](https://ithelp.ithome.com.tw/articles/10241001)
@@ -108,7 +133,7 @@ cube(double(increment(logSomething(x))));
 
 但用 Box 這種 functor 能保證每次回傳 **一定都是相同的 data type**。
 
-### FlatMap
+## FlatMap
 
 un-nest 扁平化，接受 Functor 當作參數，回傳把最外層 Context 拿掉後裡面的東西。
 
@@ -120,7 +145,7 @@ const Box = (f) => ({
 
 `flatMap` 與上一節的 `runEffect` 實作方法一樣，但 `runEffect` 主用於檢視 Box 內容，如果只想扁平化，除掉 nest，則推薦分開撰寫成 `flatMap`。
 
-### Chain
+## Chain
 
 將 `map` 和 `flatMap` 做成鏈式的串接方法。
 
@@ -135,7 +160,7 @@ const Box = (f) => ({
 });
 ```
 
-### Side Effect
+## Side Effect
 
 一般在取 DOM 元素的內容時，我們可能會這樣做：
 
