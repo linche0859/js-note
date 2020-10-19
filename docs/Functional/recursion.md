@@ -48,7 +48,7 @@
 
 ### binary tree
 
-![binaryTree](images/binary-tree.png)
+![binaryTree](./images/binary-tree.png)
 
 > 上圖的最大深度為 3。
 
