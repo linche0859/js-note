@@ -8,13 +8,13 @@
 - 實現（fulfilled）：表示操作成功地完成
 - 拒絕（rejected）：表示操作失敗了
 
-## Promise.then()
+## `Promise.then()`
 
 ### 回傳值
 
 發生於 **非同步函式** 或 **then 的 callback** 中：
 
-- 回傳一個值，則 `then` 回傳之 promise 以此值被 **實現（resolved）**
+- 回傳一個值，則 `then` 回傳的 promise 會以此值被 **實現（resolved）**
 
   ```js
   Promise.resolve(1)
@@ -23,7 +23,7 @@
     .then((value) => console.log(value));
   ```
 
-- 拋出一個例外，則 then 回傳之 promise 以此例外被否決（rejected）
+- 拋出一個例外，則 `then` 回傳的 promise 會以此例外被 **否決（rejected）**
 
   ```js
   Promise.resolve()
@@ -36,7 +36,7 @@
     });
   ```
 
-- 回傳一個被實現的 promise，則 then 回傳之 promise 以此值被實現
+- 回傳一個被實現的 promise，則 `then` 回傳的 promise 會是此 **被實現的 promise 值**
 
   ```js
   Promise.resolve('foo').then(function(string) {
@@ -47,9 +47,35 @@
       }, 1);
     });
   });
+
+  // [[PromiseState]]: "fulfilled"
+  // [[PromiseResult]]: "foobar"
   ```
 
-- 回傳一個被否決的 promise，則 then 回傳之 promise 以此值被否決
+- 回傳一個被否決的 promise，則 `then` 回傳的 promise 會以此值被否決
+
+## `Promise.all()`
+
+同時處理多個非同步，但必須所有傳入的值都是 `fulfilled` 才會讓 `Promise.all()` 回傳的 promise fulfilled，否則會 rejected。
+
+```js
+function asyncFunc() {
+  return Promise.all([fakeFetch(), fakeFetch()]).then(([result1, result2]) => {
+    console.log(result1);
+    console.log(result2);
+  });
+}
+```
+
+若改用 `async` / `await` 就能這樣使用：
+
+```js{2}
+async function asyncFunc() {
+  const [result1, result2] = await Promise.all([fakeFetch(), fakeFetch()]);
+  console.log(result1);
+  console.log(result2);
+}
+```
 
 ## Promise.prototype.finally
 
@@ -71,7 +97,7 @@
 
   `.then()` 和 `.catch()` 的 callback 會有 argument，而該 argument 是在 promise chain 中，前一個 Promise 的 fulfilled 值或 rejected 值。
 
-  但 `Promise.prototype.finally()` 的 callback 是沒有 argument 的，若你還是寫了 argument，其值也會是 `undefined`，不管 promise chain 中的前一個 Promise 的 fulfilled 或 rejected。
+  但 `Promise.prototype.finally()` 的 callback 是沒有 argument 的，若還是寫了 argument，其值也會是 `undefined`，不管 promise chain 中的前一個 Promise 的 fulfilled 或 rejected。
 
   ```js
   Promise.resolve('OK').finally((value) => {
@@ -79,9 +105,9 @@
   });
   ```
 
-- `Promise.prototype.finally()` 的 callback 會被忽略 `return`
+- `Promise.prototype.finally()` 的 callback 會忽略 `return` 關鍵字
 
-  但回傳的 Promise 的 fulfilled 值或 rejected 值會是 **前一個** promise chain 中的結果。
+  回傳的 Promise 的 fulfilled 值或 rejected 值會是 **前一個** promise chain 中的結果。
 
   ```js
   Promise.resolve('OK')
@@ -115,9 +141,45 @@
 
 若 `return` 直接回傳值，回傳值會等同於將值傳入 `Promise.resolve()`。
 
+```js
+async function asyncFunc() {
+  return 'hi';
+}
+
+asyncFunc(); // Promise {<fulfilled>: "hi"}
+
+asyncFunc().then((value) => console.log(value)); // "hi"
+```
+
 若沒有回傳值，則等同於回傳 `Promise.resolve(undefined)`。
 
+```js
+async function asyncFunc() {
+  'hello';
+}
+
+asyncFunc(); // Promise {<fulfilled>: undefined}
+
+asyncFunc().then((value) => console.log(value)); // undefined
+```
+
 若 `throw` 某個值，回傳值會等同於將值傳入 `Promise.reject()`。
+
+```js
+async function asyncFunc() {
+  throw new Error('Oops');
+}
+
+asyncFunc();
+// Promise {<rejected>: Error: Oops
+//     at asyncFunc (<anonymous>:2:9)
+//     at <anonymous>:5:1}
+
+asyncFunc().catch((error) => console.log(error));
+// Error: Oops
+//     at asyncFunc (<anonymous>:2:9)
+//     at <anonymous>:1:1
+```
 
 ### `async` / `await` 的運用
 
@@ -156,9 +218,21 @@ async function main() {
 main();
 ```
 
-### Array.map
+### 錯誤處理
 
-Array.map 是 JavaScript 陣列裡常使用的方法，而 `.map()` 方法內，處理函式的機制是 **同步的（synchronous）**，也就是如果我們想在裡面跑非同步的邏輯，是沒辦法等到我們非同步的工作完成。
+如果要依順序處理多個非同步，並想 **分別處理** 錯誤，可以用 `.catch()` 來實做：
+
+```js{2}
+async function asyncFunc() {
+  const result1 = await fakeFetch().catch((error) => {
+    console.log(error.message);
+  });
+}
+```
+
+## `Array.map` 的非同步運用
+
+`Array.map` 是 JavaScript 陣列裡常使用的方法，而 `.map()` 方法內，處理函式的機制是 **同步的（synchronous）**，也就是如果我們想在裡面跑非同步的邏輯，是沒辦法等到我們非同步的工作完成。
 
 如果我們想引入非同步邏輯，我們可以這樣做：
 

@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  title: 'JS 筆記',
+  title: 'JavaScript 筆記',
   base: '/js-note/',
   // Extra tags to inject into the page HTML <head>
   head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
@@ -45,6 +45,7 @@ module.exports = {
         title: 'ES6',
         children: [
           '/ES6/arrow-compare',
+          '/ES6/string-method',
           '/ES6/template-literals',
           '/ES6/request-comparison',
           '/ES6/promise',

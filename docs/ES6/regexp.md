@@ -1,5 +1,26 @@
 # RegExp
 
+## `RegExp.prototype.exec()`
+
+使用的 RegExp 有設定 `global` 或 `sticky` flag，在執行 `RegExp.prototype.exec()` 後，會在該 RegExp 物件儲存前一個 match 的 `lastIndex` (即上次最後 match 的字串的最後一個字元在原字串中的 `index` 為何，用於下一次 match 開始的 `index`)。
+
+所以只要重複執行幾次 `RegExp.prototype.exec()`，就能一直取得 match 的結果，即取得 capture group、index、input 和 groups 這些資訊。
+
+直到 match 的結果為 `null` 時，代表已經找不到 match 的字串，此時會將 RegExp 物件的 `lastIndex` 設為 `0`，代表之後執行 `RegExp.prototype.exec()` 會重頭開始 match 字串。
+
+```js
+let string = 'ES7 ES8 ES9 ECMAScript';
+let pattern = /(ES(\d+))/g;
+let match;
+
+while ((match = pattern.exec(string))) {
+  console.log(match);
+}
+// ["ES7", "ES7", "7", index: 0, input: "ES7 ES8 ES9 ECMAScript", groups: undefined]
+// ["ES8", "ES8", "8", index: 4, input: "ES7 ES8 ES9 ECMAScript", groups: undefined]
+// ["ES9", "ES9", "9", index: 8, input: "ES7 ES8 ES9 ECMAScript", groups: undefined]
+```
+
 ## Numbered Capture Groups
 
 當 RegExp match 的字串，轉成陣列後，會對每個 capture group 都分配一個唯一的編號，並可使用該編號來引用。
