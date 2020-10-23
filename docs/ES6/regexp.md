@@ -188,8 +188,103 @@ pattern 通常從最左邊的 sub-pattern 開始 match，若左邊的 sub-patter
 
 :::
 
+## Positive Lookahead
+
+符號以 `?=` 表示，假設以 `a(?=b)` 來解釋，`a` 後面一定要接著 `b` 才會匹配成功。
+
+不只是字元，lookahead 的語法也可以接受任意合法的正規表達式。例如：`,(?=(\d{3})+$)`，意思是 `,` 後一定要是三個連續數字，且剛好做為結尾。才會匹配成功。
+
+```js
+/,(?=(\d{3})+$)/.test(',123'); // true
+
+/,(?=(\d{3})+$)/.test(',12a'); // false
+
+/,(?=(\d{3})+$)/.test(',123a'); // false
+```
+
+## Negative Lookahead
+
+符號以 `?!=` 表示，與 positive 相反，例如：`a(?!=b)`，表示 `a` 後面不一定要接著 `b`，都可以匹對成功。
+
+```js
+/a(?!=b)/.test('ab'); // true
+
+/a(?!=b)/.test('ac'); // true
+
+/a(?!=b)/.test('a'); // true
+```
+
+## `\b` 和 `\B`
+
+### `\b`
+
+MDN 文件中，`word character is not followed or preceded by another word-character`，中文意思是單字後面沒有其他的 `\w`。如果用 word boundary 的概念理解就是字和字邊緣的地方。
+
+:::tip 補充
+
+`\w` 表示包含數字字母與底線，等同於[A-Za-z0-9_]。
+
+:::
+
+例如：`d/b`，表示 `d` 後面要為非 `\w` 才會匹配成功。
+
+```js
+[...'hello world, word boundary'.matchAll(/d\b/g)];
+
+// 匹配到單字 world 和 word 的 d
+// ["d", index: 10, input: "hello world, word boundary", groups: undefined]
+// ["d", index: 16, input: "hello world, word boundary", groups: undefined]
+```
+
+### `\B`
+
+`\B` 取反向之意，就是非 word boundary 的地方。
+
+```js
+[...'hello world, word boundary'.matchAll(/d\B/g)];
+
+// 匹配到單字 boundary 的 d
+// ["d", index: 22, input: "hello world, word boundary", groups: undefined]
+```
+
+## 數字加上 comma
+
+1. 利用 zero-length 的特性匹配
+
+   > 上面提到的 `?=`、`\b`、`\B` 都是無寬度匹配的，
+   >
+   > 匹配的長度都是 0，但不代表沒有匹配。
+
+   ```js
+   '1000000'.replace(/\B(?=(\d{3})+$)/g, ','); // 1,000,000
+   ```
+
+   開頭的 `\B` 是匹配非 word boundary 的位置，所以會從 `1` 到第一個 `0` 的中間開始：
+
+   1. `?=` - 需後方接著的是 `(\d{3})`
+   1. `(\d{3})+` - 匹配一次或多次連續 3 個數字(3 的倍數次數的數字)
+   1. `$` - 結尾前需要是 `(\d{3})`
+
+1. 匹配應該加入 comma 的數字
+
+   ```js
+   '1000000'.replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+   ```
+
+   這邊的 `$1` 很重要，因為我們要把匹配的字元也一起放進去，只有 `,` 的話會像這樣：`,00,000`。
+
+1. Web API - `Intl.NumberFormat`。
+
+   > [MDN 文件](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat)
+
+   ```js
+   new Intl.NumberFormat().format(1000000); // 1,000,1000
+   ```
+
 ## 參考
 
 [RegExp Named Capture Groups](https://ithelp.ithome.com.tw/articles/10243957)
 
 [RegExp Lookbehind Assertions](https://ithelp.ithome.com.tw/articles/10245116)
+
+[將數字加上 comma 的正規表達式說明](https://blog.kalan.dev/2020-10-20-how-to-add-comma-into-number/?fbclid=IwAR1sds5GHfF-YGrsuWF6L4Ad5j60k-NgGWLEzcs7C6aYa7x3ALmXcdHhE7I)
