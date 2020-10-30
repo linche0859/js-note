@@ -97,6 +97,24 @@ const newString = string.replace(pattern, function(
 
 :::
 
+## String.prototype.replaceAll()
+
+替換全部符合條件的字串至指定的字串。
+
+```js
+const query = 'q=query+string+parameters';
+query.replaceAll('+', ' ');
+
+// "q=query string parameters"
+```
+
+與 `String.prototype.replace` 的比較：
+
+| Methods        | <p class="m-0 text-left">searchValue 是字串</p> | <p class="m-0 text-left">searchValue 不是設定 `global` flag 的 RegExp</p> |
+| -------------- | ----------------------------------------------- | ------------------------------------------------------------------------- |
+| `replace()`    | 只會替換第一個 searchValue                      | 替換所有的 searchValue                                                    |
+| `replaceAll()` | 只會替換第一個 searchValue                      | 會拋出 `TypeError`，因要避免與 `replaceAll()` 的行為不符合 <br>           |
+
 ## `String.prototype.matchAll()`
 
 ```js
@@ -121,3 +139,5 @@ const matches = [...string.matchAll(pattern)];
 [padStart & padEnd](https://ithelp.ithome.com.tw/articles/10240599)
 
 [String.prototype.matchAll()](https://ithelp.ithome.com.tw/articles/10248910)
+
+[String.prototype.replaceAll()](https://ithelp.ithome.com.tw/articles/10252086)

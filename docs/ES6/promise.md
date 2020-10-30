@@ -77,6 +77,30 @@ async function asyncFunc() {
 }
 ```
 
+## `Promise.allSettled`
+
+返回一個所有給定的 promise 都已經 `fulfilled` 或 `rejected` 的陣列，其中的每一個物件表示對應的 promise 結果。
+
+通常用於 **多個彼此不依賴** 的非同步任務。
+
+相比之下，`Promise.all()` 較適合彼此相互依賴或其中任一個 `reject` 時立即結束。
+
+```js
+const promise1 = Promise.resolve(3);
+const promise2 = new Promise((resolve, reject) =>
+  setTimeout(reject, 100, 'foo')
+);
+
+Promise.allSettled([promise1, promise2]).then((data) =>
+  data.forEach((item) => console.log(item))
+);
+
+// [
+//   {status: 'fulfilled', value: 3}
+//   {status: 'rejected', reason: 'foo'}
+// ]
+```
+
 ## Promise.prototype.finally
 
 - 回傳值永遠是 Promise，而該 promise 的 `PromiseState` 取決於上一個 promise chain。
