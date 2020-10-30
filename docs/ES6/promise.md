@@ -101,6 +101,43 @@ Promise.allSettled([promise1, promise2]).then((data) =>
 // ]
 ```
 
+## Promise.prototype.any
+
+適用於一次處理多個非同步事件，並且抓出第一個 `fulfilled` 的 promise，其餘 promise 的返回結果就不做處理，只有當全部都 `rejected` 才會進行錯誤處理。
+
+> 範例可以 [參考連結](https://ithelp.ithome.com.tw/articles/10252463)
+
+或是想動態引入模組 (`import()`)，但有多個來源可以引入，但只需引入最快的那一個即可：
+
+```js
+const lodash = await Promise.any([
+  import('https://primary.example.com/lodash'),
+  import('https://secondary.example.com/lodash'),
+]);
+```
+
+### AggregateError
+
+若所有傳入的 Promise 都 `rejected`，則會以 `AggregateError` rejected，並會保留所有 rejection reasons。
+
+```js
+Promise.any([
+  Promise.reject('Oops 1'),
+  Promise.reject('Oops 2'),
+  Promise.reject('Oops 3'),
+]).catch((error) => {
+  console.log(error instanceof AggregateError);
+  console.log(error.errors);
+  console.log(error.message);
+  console.log(error.stack);
+});
+
+// true
+// ["Oops 1", "Oops 2", "Oops 3"]
+// All promises were rejected
+// AggregateError: All promises were rejected
+```
+
 ## Promise.prototype.finally
 
 - 回傳值永遠是 Promise，而該 promise 的 `PromiseState` 取決於上一個 promise chain。
@@ -326,6 +363,10 @@ const clickHandler = async () => {
 [Async Functions & await expression](https://ithelp.ithome.com.tw/articles/10241334)
 
 [Promise.prototype.finally()](https://ithelp.ithome.com.tw/articles/10242649)
+
+[Promise.allSettled()](https://ithelp.ithome.com.tw/articles/10249382)
+
+[Promise.any() & AggregateError](https://ithelp.ithome.com.tw/articles/10252463)
 
 [async/await 的奇淫技巧](https://fred-zone.blogspot.com/2017/04/javascript-asyncawait.html)
 
