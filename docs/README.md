@@ -1,9 +1,9 @@
 # 目錄
 
-## 屬性的特徵
+## 基礎應用
 
-- [物件擴充的修改與調整](/Property/expansion.md)
-- [Getter 與 Setter](/Property/getter-setter.md)
+- [物件](/base/object.md)
+- [this](/base/this.md)
 
 ## ES6
 

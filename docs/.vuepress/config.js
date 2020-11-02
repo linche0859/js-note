@@ -37,9 +37,9 @@ module.exports = {
     // 側邊欄配置
     sidebar: [
       {
-        title: '屬性的特徵',
+        title: '基礎應用',
         // collapsable: true,
-        children: ['/Property/expansion', '/Property/getter-setter'],
+        children: ['/base/object', '/base/this'],
       },
       {
         title: 'ES6',
