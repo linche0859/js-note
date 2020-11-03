@@ -8,7 +8,7 @@
 - 實現（fulfilled）：表示操作成功地完成
 - 拒絕（rejected）：表示操作失敗了
 
-## `Promise.then()`
+## `Promise.then`
 
 ### 回傳值
 
@@ -54,7 +54,7 @@
 
 - 回傳一個被否決的 promise，則 `then` 回傳的 promise 會以此值被否決
 
-## `Promise.all()`
+## `Promise.all`
 
 同時處理多個非同步，但必須所有傳入的值都是 `fulfilled` 才會讓 `Promise.all()` 回傳的 promise fulfilled，否則會 rejected。
 
@@ -358,6 +358,48 @@ const clickHandler = async () => {
   <es6-async-await-ArrayMap />
 </TryBox>
 
+### 平行執行，依序列出
+
+透過 `Array.map` 不會暫停並等待非同步函式的運行特性，加上 `for...of` 的等待回應內容，達到平行執行，依序列出。
+
+```js
+const arrayData = [
+  { num: 1, time: 500 },
+  { num: 2, time: 3000 },
+  { num: 3, time: 1500 },
+  { num: 4, time: 1000 },
+];
+
+const promiseFn = (num, time) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(num + 10);
+    }, time);
+  });
+};
+
+async function parallelFn() {
+  const data = arrayData.map(async (item) => {
+    // 此行的 await 不會暫停函式運行
+    const res = await promiseFn(item.num, item.time);
+    return res;
+  });
+  // 此時的 data 內的 promise 是尚未 resolve 狀態
+  console.log(data);
+
+  for (const res of data) {
+    console.log(await res);
+  }
+}
+
+parallelFn();
+// [Promise, Promise, Promise, Promise]
+// 11
+// 12
+// 13
+// 14
+```
+
 ## 參考
 
 [Async Functions & await expression](https://ithelp.ithome.com.tw/articles/10241334)
@@ -371,3 +413,5 @@ const clickHandler = async () => {
 [async/await 的奇淫技巧](https://fred-zone.blogspot.com/2017/04/javascript-asyncawait.html)
 
 [当 async/await 遇上 forEach](http://objcer.com/2017/10/12/async-await-with-forEach/)
+
+[JS async/await 系列：延伸運用篇](https://ithelp.ithome.com.tw/articles/10250245)
