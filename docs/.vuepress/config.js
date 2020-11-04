@@ -39,7 +39,7 @@ module.exports = {
       {
         title: '基礎應用',
         // collapsable: true,
-        children: ['/base/object', '/base/this'],
+        children: ['/base/variable', '/base/object', '/base/this'],
       },
       {
         title: 'ES6',

@@ -2,6 +2,7 @@
 
 ## 基礎應用
 
+- [變數與資料型別](/base/variable.md)
 - [物件](/base/object.md)
 - [this](/base/this.md)
 
