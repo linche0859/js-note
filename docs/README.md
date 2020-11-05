@@ -5,6 +5,8 @@
 - [變數與資料型別](/base/variable.md)
 - [物件、陣列與型別判斷](/base/object.md)
 - [運算式和運算子](/base/expression.md)
+- [流程判斷與迴圈](/base/process-judgment.md)
+- [BOM 和 DOM](/base/bom-dom.md)
 - [this](/base/this.md)
 
 ## ES6

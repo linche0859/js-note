@@ -43,6 +43,8 @@ module.exports = {
           '/base/variable',
           '/base/object',
           '/base/expression',
+          '/base/process-judgment',
+          '/base/bom-dom',
           '/base/this',
         ],
       },
