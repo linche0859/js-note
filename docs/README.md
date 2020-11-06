@@ -8,7 +8,8 @@
 - [流程判斷與迴圈](/base/process-judgment.md)
 - [BOM 和 DOM](/base/bom-dom.md)
 - [事件機制的原理](/base/event.md)
-- [this](/base/this.md)
+- [函式](/base/function.md)
+- [THIS 的真實身分](/base/this.md)
 
 ## ES6
 
