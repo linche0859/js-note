@@ -7,6 +7,7 @@
 - [運算式和運算子](/base/expression.md)
 - [流程判斷與迴圈](/base/process-judgment.md)
 - [BOM 和 DOM](/base/bom-dom.md)
+- [事件機制的原理](/base/event.md)
 - [this](/base/this.md)
 
 ## ES6
