@@ -155,78 +155,54 @@ ul.appendChild(fragment);
 
 `insertBefore()` 方法，則是將新節點 (newNode) 插入至指定的 (refNode) 節點的 **前面**：
 
-```html
-<ul id="myList">
-  <li>Item 01</li>
-  <li>Item 02</li>
-  <li>Item 03</li>
-</ul>
+```js
+const myList = document.getElementById('myList');
 
-<script>
-  const myList  = document.getElementById('myList');
+const refNode = document.querySelectorAll('li')[1];
 
-  const refNode = document.querySelectorAll('li')[1];
+// 建立 li 元素節點
+const newNode = document.createElement('li');
 
-  // 建立 li 元素節點
-  const newNode = document.createElement('li');
+// 建立 textNode 文字節點
+const textNode = document.createTextNode('Hello world!');
+newNode.appendChild(textNode);
 
-  // 建立 textNode 文字節點
-  const textNode = document.createTextNode("Hello world!");
-  newNode.appendChild(textNode);
-
-  // 將新節點 newNode 插入 refNode 的前方
-  myList.insertBefore(newNode, refNode);
-<script>
+// 將新節點 newNode 插入 refNode 的前方
+myList.insertBefore(newNode, refNode);
 ```
 
 ### `NODE.replaceChild(newChildNode, oldChildNode)`
 
 `replaceChild()` 方法，則是將原本的 (oldChildNode) 替換成指定的 (newChildNode)。
 
-```html
-<ul id="myList">
-  <li>Item 01</li>
-  <li>Item 02</li>
-  <li>Item 03</li>
-</ul>
+```js
+const myList = document.getElementById('myList');
 
-<script>
-  const myList  = document.getElementById('myList');
+const oldNode = document.querySelectorAll('li')[1];
 
-  const oldNode = document.querySelectorAll('li')[1];
+// 建立 li 元素節點
+const newNode = document.createElement('li');
 
-  // 建立 li 元素節點
-  const newNode = document.createElement('li');
+// 建立 textNode 文字節點
+const textNode = document.createTextNode('Hello world!');
+newNode.appendChild(textNode);
 
-  // 建立 textNode 文字節點
-  const textNode = document.createTextNode("Hello world!");
-  newNode.appendChild(textNode);
-
-  // 將原有的 oldNode 替換成新節點 newNode
-  myList.replaceChild(newNode, oldNode);
-<script>
+// 將原有的 oldNode 替換成新節點 newNode
+myList.replaceChild(newNode, oldNode);
 ```
 
 ### `NODE.removeChild(childNode)`
 
 `removeChild()` 方法，則是將指定的 (childNode) 子節點移除。
 
-```html
-<ul id="myList">
-  <li>Item 01</li>
-  <li>Item 02</li>
-  <li>Item 03</li>
-</ul>
+```js
+const myList = document.getElementById('myList');
 
-<script>
-  const myList  = document.getElementById('myList');
+// 取得 "<li>Item 02</li>" 的元素
+const removeNode = document.querySelectorAll('li')[1];
 
-  // 取得 "<li>Item 02</li>" 的元素
-  const removeNode = document.querySelectorAll('li')[1];
-
-  // 將 myList 下的 removeNode 節點移除
-  myList.removeChild(removeNode);
-<script>
+// 將 myList 下的 removeNode 節點移除
+myList.removeChild(removeNode);
 ```
 
 ## 參考
