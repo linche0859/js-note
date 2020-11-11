@@ -40,6 +40,20 @@ const person = {
 person.callName();
 ```
 
+### 使用強制指定
+
+箭頭函式是無法使用 `bind()`、`call()`、`apply()` 來指定 `this`。
+
+```js
+const fn = () => {
+  console.log(this);
+};
+
+fn.bind()(); // window
+fn.call({}); // window
+fn.apply({}); // window
+```
+
 ## 巢狀的 `this` 作用域
 
 ```js

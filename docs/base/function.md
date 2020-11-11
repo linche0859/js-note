@@ -30,8 +30,36 @@ getData(function (a) {
 });
 ```
 
+## 範圍鏈
+
+內層的函式可以讀取外層宣告的變數，但外層的函式存取不到內層宣告的變數。若是在自己層級找不到就會一層一層往外找，直到全域為止，這種行為，稱之為「範圍鏈」(Scope Chain)。
+
+:::tip 重要觀念
+
+範圍鏈是在函式 **被定義的當下決定的**，不是在被呼叫的時後決定。
+
+:::
+
+## 閉包
+
+當內部函式被回傳後，除了自己本身的程式碼外，也可以取得內部函式 **當時環境** 的變數值，並記住了執行當時的環境，這就是閉包 (Closure)。
+
+```js
+for (var i = 0; i < 5; i++) {
+  (function(i) {
+    window.setTimeout(function() {
+      console.log(i);
+    }, 1000 * i);
+  })(i);
+}
+```
+
+像上面的範例，利用 IIFE，也是儲存閉包的環境狀態做法，在執行 `setTimeout` 的同時，會將當下的 `i` 鎖起來，延長它的生命。
+
 ## 參考
 
 [函式裡的參數](https://ithelp.ithome.com.tw/articles/10192368)
 
 [Callback Function 與 IIFE](https://ithelp.ithome.com.tw/articles/10192739)
+
+[閉包 Closure](https://ithelp.ithome.com.tw/articles/10193009)
