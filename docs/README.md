@@ -21,6 +21,7 @@
 - [透過 lazy loading 延遲載入圖片](/ES6/lazyload-image.md)
 - [RegExp](/ES6/regexp.md)
 - [File API](/ES6/file-api.md)
+- [Virtualized List](/ES6/virtualized-list.md)
 
 ## Functional Programming
 
