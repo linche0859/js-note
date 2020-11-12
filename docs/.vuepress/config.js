@@ -48,6 +48,7 @@ module.exports = {
           '/base/event',
           '/base/function',
           '/base/this',
+          '/base/primitive-wrapper',
         ],
       },
       {

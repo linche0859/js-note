@@ -14,7 +14,7 @@
 
 :::tip 提醒
 
-ES6 之後多了新的型別：`Symbol`。
+ES6 之後多了新的型別：`Symbol`、`BigInt`。
 
 :::
 

@@ -173,8 +173,51 @@ obj.foo(); // 2
 - 這個新建構的物件會被設為那個 function 的 `this` 綁定目標，也就是 **`this` 會指向新建構的物件**
 - 除非這個 function 指定回傳 (return) 了他自己的替代物件，否則這個透過 `new` 產生的物件會被自動回傳
 
+## Cascade
+
+也有人稱為 Fluent Interface。
+
+當每次都是針對同一個物件屬性作運算更新，那麼可以這樣寫：
+
+```js{5,11,16,21}
+const calNum = function(num) {
+  this.num = num;
+
+  this.add = function(newNum) {
+    this.num += newNum;
+    return this;
+  };
+
+  this.sub = function(newNum) {
+    this.num -= newNum;
+    return this;
+  };
+
+  this.multi = function(newNum) {
+    this.num *= newNum;
+    return this;
+  };
+
+  this.division = function(newNum) {
+    this.num /= newNum;
+    return this;
+  };
+};
+```
+
+於是，可以在一行內把對 `num` 的運算搞定：
+
+```js
+const count = new calNum(100);
+
+count.add(100).sub(50);
+console.log(count.num); // 150
+```
+
 ## 參考
 
 [學好 this 前，先搞清楚 this 做什麼](https://ithelp.ithome.com.tw/articles/10244942)
 
 [What's THIS in JavaScript](https://ithelp.ithome.com.tw/articles/10193193)
+
+[函式的 Combo 技： Cascade](https://ithelp.ithome.com.tw/articles/10193549)

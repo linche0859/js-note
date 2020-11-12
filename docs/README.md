@@ -10,6 +10,7 @@
 - [事件機制的原理](/base/event.md)
 - [函式](/base/function.md)
 - [THIS 的真實身分](/base/this.md)
+- [基本型別包裹器](/base/primitive-wrapper.md)
 
 ## ES6
 
