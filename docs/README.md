@@ -11,6 +11,7 @@
 - [函式](/base/function.md)
 - [THIS 的真實身分](/base/this.md)
 - [基本型別包裹器](/base/primitive-wrapper.md)
+- [物件的原型和原型鏈](/base/prototype.md)
 
 ## ES6
 

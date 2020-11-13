@@ -49,6 +49,7 @@ module.exports = {
           '/base/function',
           '/base/this',
           '/base/primitive-wrapper',
+          '/base/prototype',
         ],
       },
       {
