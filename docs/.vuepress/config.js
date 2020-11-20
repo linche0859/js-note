@@ -50,6 +50,7 @@ module.exports = {
           '/base/this',
           '/base/primitive-wrapper',
           '/base/prototype',
+          '/base/lifecycle',
         ],
       },
       {
