@@ -1,4 +1,4 @@
-# 使用 Webpack Config
+# Webpack Config
 
 每次的編輯和儲存後，都需要再輸入 `webpack ./xx.js` 重新編譯，這樣的動作我們可以藉由新增一個設定檔 `webpack.config.js`，讓每次只需要輸入 `webpack` 不帶其他參數，Webpack 就會去讀取 `webpack.config.js` 中的設定。
 
@@ -19,7 +19,7 @@ module.exports = {
 };
 ```
 
-### 語法的解釋
+### 屬性的解釋
 
 - `module.exports` - CommonJS 的模組化語法，意思是 `module.exports` 這個物件所帶值
 - `entry` - 代表著編譯前檔案的檔名，這邊使用 `./app.js`，代表執行 `webpack` 這個指令時，會用同個路徑底下的 `app.js` 來進行編譯

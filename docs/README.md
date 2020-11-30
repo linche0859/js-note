@@ -64,7 +64,7 @@
 ## Webpack
 
 - [初探 Webpack](/webpack/basic.md)
-- [使用 Webpack Config](/webpack/config.md)
+- [Webpack Config](/webpack/config.md)
 
 ## Plugin
 
