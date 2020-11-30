@@ -109,6 +109,10 @@ module.exports = {
         ],
       },
       {
+        title: 'Webpack',
+        children: ['/webpack/basic', '/webpack/config'],
+      },
+      {
         title: 'Plugin',
         children: ['/plugin/lint', '/plugin/solid'],
       },
