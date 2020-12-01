@@ -67,6 +67,7 @@
 - [Webpack Config](/webpack/config.md)
 - [CSS module](/webpack/css-module.md)
 - [Sass Module](/webpack/sass-module.md)
+- [Babel](/webpack/babel.md)
 
 ## Plugin
 
