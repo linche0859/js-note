@@ -110,7 +110,12 @@ module.exports = {
       },
       {
         title: 'Webpack',
-        children: ['/webpack/basic', '/webpack/config'],
+        children: [
+          '/webpack/basic',
+          '/webpack/config',
+          '/webpack/css-module',
+          '/webpack/sass-module',
+        ],
       },
       {
         title: 'Plugin',

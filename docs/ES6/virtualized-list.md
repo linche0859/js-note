@@ -71,7 +71,7 @@
 }
 ```
 
-下方的範例可以透過 Dev tool 觀察，每次渲染時只顯示 10 筆資料。
+下方的範例可以透過 Dev Tool 觀察，每次渲染時只顯示 10 筆資料。
 
 <TryBox>
   <es6-virtualized-list-VirtualizedList />
