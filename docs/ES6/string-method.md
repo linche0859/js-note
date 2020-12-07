@@ -110,10 +110,10 @@ query.replaceAll('+', ' ');
 
 與 `String.prototype.replace` 的比較：
 
-| Methods        | <p class="m-0 text-left">searchValue 是字串</p> | <p class="m-0 text-left">searchValue 不是設定 `global` flag 的 RegExp</p> |
-| -------------- | ----------------------------------------------- | ------------------------------------------------------------------------- |
-| `replace()`    | 只會替換第一個 searchValue                      | 替換所有的 searchValue                                                    |
-| `replaceAll()` | 只會替換第一個 searchValue                      | 會拋出 `TypeError`，因要避免與 `replaceAll()` 的行為不符合 <br>           |
+| Methods        | <p class="m-0 text-left">`searchValue` 是字串</p> | <p class="m-0 text-left">`searchValue` 不是設定 `global` flag 的 RegExp</p>      |
+| -------------- | ------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `replace()`    | 只會替換第一個 `searchValue`                      | 只會替換第一個 `searchValue`                                                     |
+| `replaceAll()` | 替換所有的 `searchValue`                          | 會拋出 `TypeError`，因要避免與 `replaceAll()` 的行為不符合 (即不是全部替換) <br> |
 
 ## `String.prototype.matchAll()`
 
