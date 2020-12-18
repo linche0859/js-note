@@ -123,22 +123,66 @@ btn.addEventListener('click', function() {
 // 點擊後會出現，'HI' 和 'HELLO'
 ```
 
+另外也可以設定事件監聽器自訂的屬性：
+
+- once - 該監聽器是否只會觸發一次
+- passive - 是否「不能」執行 `event.preventDefault()`，常用在提升監聽器的效能如 `scroll`
+- capture - 事件的捕獲機制，`true` 代表「捕獲機制」，`false` 則為「冒泡機制」
+
+:::tip 提醒
+
+可以透過 Dev Tool 的 `getEventListeners(element)`，觀察指定物件的事件監聽器註冊內容。
+
+```js
+getEventListeners($('.cat'));
+
+// {
+//   "click": [
+//     {
+//       "listener": onclick(event)
+//       "useCapture": false,
+//       "passive": false,
+//       "once": false,
+//       "type": "click"
+//     },
+//     {
+//       "listener": log()
+//       "useCapture": true,
+//       "passive": true,
+//       "once": true,
+//       "type": "click"
+//     }
+//   ]
+// }
+```
+
+:::
+
 ---
 
 若是要解除事件的註冊，則是透過 `removeEventListener()` 來取消。
 
 :::warning 注意
 
-由於 `addEventListener()` 可以同時針對某個事件綁定多個 handler，所以透過 `removeEventListener()` 解除事件的時候，第二個參數的 handler 必須要與先前在 `addEventListener()` 綁定的 handler 是同一個 **實體**。
+由於 `addEventListener()` 可以同時針對某個事件綁定多個 handler，所以透過 `removeEventListener()` 解除事件的時需要注意：
+
+- 第一個參數的事件名稱需相同
+- 第二個參數的 handler 必須要與先前在 `addEventListener()` 綁定的 handler 是同一個 **實體**
+- 第三個參數需填入相同的設定
 
 ```js{7}
 const btn = document.getElementById('btn');
 const clickHandler = function() {
   console.log('HI');
 };
+const options: {
+  capture: true,
+  passive: true,
+  once: false
+}
 
-btn.addEventListener('click', clickHandler);
-btn.removeEventListener('click', clickHandler);
+btn.addEventListener('click', clickHandler, options);
+btn.removeEventListener('click', clickHandler, options);
 ```
 
 :::

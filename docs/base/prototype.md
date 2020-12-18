@@ -186,7 +186,7 @@ p.sayHello(); // 'Yo!'
 - 如果想要檢查屬性是來自物件本身還是原型鏈，可以使用：
 
   - `in` - 可以依照原型鏈一路向上找到符合的屬性
-  - `hasOwnProperty()` - 只能檢查屬性是否為物件本身所有
+  - `hasOwnProperty()` - 只能檢查屬性是否為物件 **本身** 所有
 
     ```js
     console.log(rockman.hasOwnProperty('buster')); // true
@@ -304,6 +304,37 @@ Object.create = function(proto) {
 ```
 
 當我們把原型物件作為參數傳入 `proto`， `Object.create()` 會回傳一個 `new F()`，也就是透過一個封裝過的建構式建構出來的物件，並把 `prototype` 指向作為參數的 `proto`。
+
+---
+
+當繼承的對象 `null` 時，便會發生以下情況：
+
+```js
+const object1 = {};
+const object2 = Object.create(null);
+
+object1.key = 'key';
+object2.key = 'key';
+
+object1.hasOwnProperty('key'); // true
+object2.hasOwnProperty('key'); // object2.hasOwnProperty is not a function
+```
+
+印出上面範例中的 `object2`：
+
+```js
+{
+  "key": "key"
+}
+```
+
+雖然印出的格式看起來像物件，但它實際上還是 `null`，所以透過 `object2.hasWonProperty('key')` 會有 Uncaught TypeError 的錯誤。
+
+但如果是藉由 `Object.prototype.hasOwnProperty` 就能判斷屬性是否存在於對象本身中：
+
+```js
+Object.prototype.hasOwnProperty.call(object2, 'key'); // true
+```
 
 ## 原型鏈內物件的關係
 
