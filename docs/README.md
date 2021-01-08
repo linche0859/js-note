@@ -68,6 +68,7 @@
 - [CSS module](/webpack/css-module.md)
 - [Sass Module](/webpack/sass-module.md)
 - [Babel](/webpack/babel.md)
+- [Optimization](/webpack/optimization.md)
 
 ## Plugin
 

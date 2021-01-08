@@ -116,6 +116,7 @@ module.exports = {
           '/webpack/css-module',
           '/webpack/sass-module',
           '/webpack/babel',
+          '/webpack/optimization',
         ],
       },
       {

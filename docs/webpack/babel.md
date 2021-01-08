@@ -25,6 +25,26 @@ Preset 代表著已經被人定義好的設定檔，其中也可以 [自己寫�
 
 [`@babel/preset-env`](https://babeljs.io/docs/en/babel-preset-env) 允許使用最新的 JavaScript 語法，並可以根據環境變數來設定要編譯到哪個程度，這邊要注意的是，`@babel/preset-env` 不支援 `stage-x` 的套件。
 
+`@babel/preset-env` 的主要功能有兩個：
+
+- 將尚未被大部分瀏覽器支援的 JavaScript 語法轉換成能被瀏覽器支援的語法
+- 較舊的瀏覽器也能支援大部分瀏覽器能支援的語法，例如 `Promise`、`Map`、`Set` 等。
+
+`@babel/preset-env` 最大的特點是，會根據 `browserslist` 的配置決定要將哪些語法轉換和 polyfill 引入，不需要手動一個一個去檢視每個語法 transform 或是 preset 是否需要被引入。
+
+另外，`@babel/preset-env` 也可以幫助 **優化 bundle 檔案大小**。假設今天需求只需要支援最新的 Chrome，在使用 `@babel/preset-env` 的情況下，它可能就不會幫你引入太多的 polyfill，最終產生的 bundle 檔案就會比較小。
+
+:::tip 補充
+
+`browserslist` 的配置是用來列出支援的瀏覽器，例如想要支援使用人數高於 0.25%，而且不包含停止安全性更新的瀏覽器，可以簡單的這樣配置：
+
+```
+> 0.25%
+not dead
+```
+
+:::
+
 ## Stages
 
 在 ECMAScript 的提案、決定過程中，會有不同階段的提案，從 Stage-0 開始：
@@ -53,7 +73,16 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [['@babel/preset-env', { targets: 'defaults' }]],
+            presets: [
+              [
+                '@babel/preset-env',
+                {
+                  targets: 'defaults',
+                  useBuiltIns: 'usage',
+                  modules: false,
+                },
+              ],
+            ],
           },
         },
       },
@@ -61,6 +90,23 @@ module.exports = {
   },
 };
 ```
+
+- `useBuiltIns` - 好幾種選項，其中 `usage` 表示當使用到新語法的地方才會做 transform。這樣可以產生較小的 bundle size
+
+  在使用 `usage` 的時候，需一併安裝 `corejs`，因在轉換時會如下方：
+
+  ```js
+  import 'core-js/modules/es.promise';
+  var a = new Promise();
+  ```
+
+  安裝 `core-js`：
+
+  ```bash
+  npm install core-js@3
+  ```
+
+- `modules` - 值為 `false` 時，表示不要將 ES module 中的 `import` 語法轉換成 `require`，因為使用 webpack 的 tree shaking，才可以讓 bundle size 變得更小
 
 在 JavaScript 檔案中寫些 ES6 的語法：
 
@@ -81,3 +127,5 @@ newFruits.push.apply(newFruits, [].concat(fruits));
 ## 參考
 
 [Babel - 走向 JavaScript 的嶄新未來](https://ithelp.ithome.com.tw/articles/10194314)
+
+[@babel/preset-env 設定](https://shubo.io/babel-preset-env/)
