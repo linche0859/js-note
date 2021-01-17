@@ -1,21 +1,17 @@
 <template>
-  <div class="lazyloadImage">
-    <div class="container">
-      <div class="row flex-wrap">
-        <div class="col-4" v-for="item in list" :key="'id' + item">
-          <picture class="position-relative d-block mb-3 rounded">
-            <div class="lazyloadImage__mockup rounded"></div>
-            <img
-              src
-              :data-src="'https://picsum.photos/500/500?random=' + item"
-              alt
-              class="lazyloadImage__img lazy rounded"
-            />
-          </picture>
-        </div>
-      </div>
-    </div>
-  </div>
+  <ul class="lazyloadImage">
+    <li v-for="item in list" :key="'id' + item">
+      <picture class="relative block">
+        <div class="lazyloadImage__mockup rounded-xl"></div>
+        <img
+          src
+          :data-src="'https://picsum.photos/500/500?random=' + item"
+          alt
+          class="lazyloadImage__img lazy rounded-xl"
+        />
+      </picture>
+    </li>
+  </ul>
 </template>
 
 <script>
@@ -70,7 +66,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
 /* 載入動畫，從右到左 */
 @keyframes loading {
   from {
@@ -81,7 +77,13 @@ export default {
   }
 }
 .lazyloadImage {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  grid-gap: 1rem;
+  margin: 0;
+  padding: 0;
   height: 300px;
+  list-style: none;
   overflow-y: auto;
   &__mockup {
     position: absolute;

@@ -21,7 +21,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
 .tryBox {
   position: relative;
   margin: 3rem 0;

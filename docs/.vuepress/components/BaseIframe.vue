@@ -1,7 +1,7 @@
 <template>
   <div class="iframe">
     <iframe
-      style="width: 100%;"
+      class="w-full"
       frameborder="0"
       scrolling="no"
       allowtransparency="true"
@@ -41,7 +41,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
 .iframe {
 }
 </style>

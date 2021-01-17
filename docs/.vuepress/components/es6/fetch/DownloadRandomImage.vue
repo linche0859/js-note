@@ -1,14 +1,16 @@
 <template>
-  <div class="downloadRandomImage card align-items-center border-0">
-    <img :src="imageUrl" class="card-img-top w-auto" alt="photo" />
-    <div class="card-body pb-0">
+  <div class="downloadRandomImage flex flex-col items-center">
+    <img :src="imageUrl" class="mb-4 rounded" alt="photo" />
+    <div class="flex">
       <base-button
-        class="btn btn-outline-success mr-3"
+        class="btn-outline-success mr-4"
+        :outline="true"
         :loading="loading"
         @click="randomHandler"
       >Random</base-button>
       <base-button
-        class="btn btn-outline-success"
+        class="btn-outline-success"
+        :outline="true"
         :loading="loading"
         @click="downloadHandler"
       >Download</base-button>
@@ -69,7 +71,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
 .downloadRandomImage {
 }
 </style>

@@ -1,0 +1,17 @@
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn-success {
+    @apply flex items-center py-2 px-4 text-lg bg-green-500 text-white border-0 rounded shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75 cursor-pointer;
+  }
+  .btn-outline-success {
+    @apply flex items-center py-2 px-4 text-lg bg-transparent text-green-500 border-2 border-solid border-green-500 rounded shadow-md hover:bg-green-100 focus:outline-none cursor-pointer;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

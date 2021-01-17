@@ -1,7 +1,11 @@
 <template>
   <button type="button" v-on="$listeners" :disabled="loading">
-    <span class="spinner-border spinner-border-sm" role="status" v-show="loading">
-      <span class="sr-only">Loading...</span>
+    <span 
+      :class="['loader', 'mr-2', 'w-6', 'h-6', 'border-4', 
+        'border-solid', 'rounded-full',
+        {'border-green-500': outline},
+        {'border-white': !outline} ]" 
+      v-show="loading">
     </span>
     <span v-if="loading">loading</span>
     <slot v-else>Click</slot>
@@ -18,6 +22,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    outline: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {};
@@ -30,7 +38,19 @@ export default {
 };
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
 .baseButton {
+}
+@keyframes loader-rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loader {
+  border-right-color: transparent;
+  animation: loader-rotate 1s linear infinite;
 }
 </style>

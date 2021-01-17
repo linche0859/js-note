@@ -2,7 +2,7 @@
   <div class="arrayMap">
     <h2 class="border-bottom-0">Get [1,2,3] order by order</h2>
     <base-button
-      :class="['btn', 'btn-success', {'mb-3': consoleList.length}]"
+      :class="['btn-success', {'mb-4': consoleList.length}]"
       :loading="loading"
       @click="clickHandler"
     ></base-button>
@@ -91,7 +91,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
 .arrayMap {
 }
 </style>
