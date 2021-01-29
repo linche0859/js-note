@@ -400,6 +400,29 @@ parallelFn();
 // 14
 ```
 
+## 使用 async / await 動態引入模組
+
+不同的模組有不同數量的功能函式，如果一同導入會使資源浪費，現在可以使用 `async` / `await` 來動態導入這些依賴，**但是這個方法僅適用於 node.js 環境**。
+
+```js
+// math.js
+const add = (num1, num2) => num1 + num2;
+
+export { add };
+```
+
+```js
+// index.js
+const doMath = async (num1, num2) => {
+  if (num1 && num2) {
+    const math = await import('./math.js');
+    console.log(math.add(num1, num2));
+  }
+};
+
+doMath(5, 10); // 15
+```
+
 ## 參考
 
 [Async Functions & await expression](https://ithelp.ithome.com.tw/articles/10241334)

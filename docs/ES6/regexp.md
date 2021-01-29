@@ -21,6 +21,85 @@ while ((match = pattern.exec(string))) {
 // ["ES9", "ES9", "9", index: 8, input: "ES7 ES8 ES9 ECMAScript", groups: undefined]
 ```
 
+## dotAll
+
+`dotAll` 表示是否在正則表達式中一起使用 `s` 修飾符，如果使用 `s` 修飾符，`dotAll` 將返回 Boolean 的結果：
+
+```js
+const regex1 = new RegExp('foo', 's');
+
+console.log(regex1.dotAll); // true
+```
+
+### `s` 修飾符
+
+`s` 修飾符表示，特殊字符 `.` 可以匹配下列的 line terminator characters (字元的終結符號)：
+
+- U+000A 換行符號（"\n"）
+- U+000D 回車符號（"\r"）
+- U+2028 行分隔符（line separator）
+- U+2029 段分隔符（paragraph separator）
+
+如果使用 `s` 修飾符 `.` 將匹配任意的單一 Unicode 基本多語言平面（BMP）字元。若要匹配 astral 字元（大於 `\uFFFF` 的 Unicode 字符），可以使用 `u`（Unicode）修飾符。一起使用這兩個修飾符，`.` 將可以匹配任意 Unicode 字元。
+
+```js
+// 使用 s 修飾符
+/^.$/.test('\n'); // false
+/^.$/s.test('\n'); // true
+
+// 使用 u 修飾符
+/^.$/.test('\uD83D\uDE0E'); // false
+/^.$/u.test('\uD83D\uDE0E'); // true
+```
+
+:::tip BMP 補充
+
+對 ECMAScript 來說，BMP 字元就是一個字元為一個 code point，而其他非 BMP 的字元就是兩個字元，因為這些字元是兩個 code point，只要該字元是幾個 code point，就是 length 幾。例如：
+
+```js
+// BMP 字元
+'a'.length; // 1
+
+// astral (即非 BMP) 字元
+'\uD83D\uDE0E'.length; // 2
+```
+
+:::
+
+### 使用 dotAll
+
+```js
+const str1 = 'hello\nworld';
+var regex1 = new RegExp('.world', 's');
+console.log(str1.replace(regex1, '')); // hello
+```
+
+在過去只能用一些特殊技巧來解決，例如：
+
+```js
+'foo\nbar'.replace(/[\s\S]bar/, ''); // foo
+
+'foo\nbar'.replace(/[^]bar/, ''); // foo
+
+'foo\nbar'.replace(/\s/, ''); // foobar
+```
+
+:::tip `\s` 補充
+
+在 ECMAScript spec 的定義中，RegExp pattern 中的 `\s` 不只 match white space，也可 match line terminator：
+
+```js
+/\s/.test(' '); // true
+
+/\s/.test('\f'); // true
+
+/\s/.test('\n'); // true
+
+/\s/.test('\r'); // true
+```
+
+:::
+
 ## Numbered Capture Groups
 
 當 RegExp match 的字串，轉成陣列後，會對每個 capture group 都分配一個唯一的編號，並可使用該編號來引用。
@@ -249,39 +328,76 @@ MDN 文件中，`word character is not followed or preceded by another word-char
 
 ## 數字加上 comma
 
-1. 利用 zero-length 的特性匹配
+- 利用 zero-length 的特性匹配
 
-   > 上面提到的 `?=`、`\b`、`\B` 都是無寬度匹配的，
-   >
-   > 匹配的長度都是 0，但不代表沒有匹配。
+  > 上面提到的 `?=`、`\b`、`\B` 都是無寬度匹配的，
+  >
+  > 匹配的長度都是 0，但不代表沒有匹配。
 
-   ```js
-   '1000000'.replace(/\B(?=(\d{3})+$)/g, ','); // 1,000,000
-   ```
+  ```js
+  '1000000'.replace(/\B(?=(\d{3})+$)/g, ','); // 1,000,000
+  ```
 
-   開頭的 `\B` 是匹配非 word boundary 的位置，所以會從 `1` 到第一個 `0` 的中間開始：
+  開頭的 `\B` 是匹配非 word boundary 的位置，所以會從 `1` 到第一個 `0` 的中間開始：
 
-   1. `?=` - 需後方接著的是 `(\d{3})`
-   1. `(\d{3})+` - 匹配一次或多次連續 3 個數字(3 的倍數次數的數字)
-   1. `$` - 結尾前需要是 `(\d{3})`
+  1.  `?=` - 需後方接著的是 `(\d{3})`
+  1.  `(\d{3})+` - 匹配一次或多次連續 3 個數字(3 的倍數次數的數字)
+  1.  `$` - 結尾前需要是 `(\d{3})`
 
-1. 匹配應該加入 comma 的數字
+- 匹配應該加入 comma 的數字
 
-   ```js
-   '1000000'.replace(/(\d)(?=(\d{3})+$)/g, '$1,');
-   ```
+  ```js
+  '1000000'.replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+  ```
 
-   這邊的 `$1` 很重要，因為我們要把匹配的字元也一起放進去，只有 `,` 的話會像這樣：`,00,000`。
+  這邊的 `$1` 很重要，因為我們要把匹配的字元也一起放進去，只有 `,` 的話會像這樣：`,00,000`。
 
-1. Web API - `Intl.NumberFormat`。
+- Web API - `Intl.NumberFormat`。
 
-   > [MDN 文件](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat)
+  > [MDN 文件](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat)
 
-   ```js
-   new Intl.NumberFormat().format(1000000); // 1,000,1000
-   ```
+  ```js
+  new Intl.NumberFormat().format(1000000); // 1,000,1000
+  ```
+
+## Unicode 屬性配對
+
+ES2018 添加了對 Unicode 屬性的配對：`\p{...}` 和 `\P{...}`，在正則表達式中需使用 `u` (unicode) 的 flag。
+
+`\p{...}` 為匹配所有的 Unicode 字元，`\P{...}` 則為相反。
+
+### ASCII
+
+```js
+/^\p{ASCII}+$/u.test('abc')   //true
+/^\p{ASCII}+$/u.test('ABC@')  //true
+/^\p{ASCII}+$/u.test('ABC🙃') //false
+```
+
+### ASCII_Hex_Digit
+
+`ASCII_Hex_Digit` 用於檢查字元是否僅包含有效的十六進制數字：
+
+```js
+/^\p{ASCII_Hex_Digit}+$/u.test('0123456789ABCDEF') //true
+/^\p{ASCII_Hex_Digit}+$/u.test('h')  //false
+```
+
+### 其他的配對屬性
+
+只需要在大括號中添加對應的名稱，包括 `Uppercase`、`Lowercase`、`White_Space`、`Alphabetic`、`Emoji` 等：
+
+```js
+/^\p{Lowercase}$/u.test('h') //true
+/^\p{Uppercase}$/u.test('H') //true
+
+/^\p{Emoji}+$/u.test('H')   //false
+/^\p{Emoji}+$/u.test('🙃🙃') //true
+```
 
 ## 參考
+
+[RegExp 的 s (dotAll) flag](https://ithelp.ithome.com.tw/articles/10243297)
 
 [RegExp Named Capture Groups](https://ithelp.ithome.com.tw/articles/10243957)
 
