@@ -1,15 +1,13 @@
 <template>
-  <div class="iframe">
-    <iframe
-      class="w-full"
-      frameborder="0"
-      scrolling="no"
-      allowtransparency="true"
-      allowfullscreen="true"
-      :src="url"
-      :height="height"
-    ></iframe>
-  </div>
+  <iframe
+    class="w-full"
+    frameborder="0" 
+    sandbox="allow-forms allow-modals allow-pointer-lock allow-presentation allow-same-origin allow-scripts" 
+    scrolling="no"
+    :src="url"
+    :height="height"
+  >
+  </iframe>
 </template>
 
 <script>
@@ -31,7 +29,7 @@ export default {
   },
   computed: {
     url() {
-      return `//codepen.io/linche0859/embed/${this.urlId}/?theme-id=0&default-tab=html,result&embed-version=2`;
+      return `//codepen.io/linche0859/embed/${this.urlId}/?theme-id=modal`;
     },
   },
   watch: {},
@@ -40,8 +38,3 @@ export default {
   methods: {},
 };
 </script>
-
-<style lang="scss" scoped>
-.iframe {
-}
-</style>
