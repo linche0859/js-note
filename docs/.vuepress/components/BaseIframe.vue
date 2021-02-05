@@ -2,7 +2,7 @@
   <iframe
     class="w-full"
     frameborder="0" 
-    sandbox="allow-forms allow-modals allow-pointer-lock allow-presentation allow-same-origin allow-scripts" 
+    sandbox="allow-forms allow-modals allow-pointer-lock allow-presentation allow-same-origin allow-scripts allow-popups" 
     scrolling="no"
     :src="url"
     :height="height"
@@ -29,7 +29,7 @@ export default {
   },
   computed: {
     url() {
-      return `//codepen.io/linche0859/embed/${this.urlId}/?theme-id=modal`;
+      return `//codepen.io/linche0859/embed/${this.urlId}/?height=${this.height}&amp;theme-id=1&amp;slug-hash=${this.urlId}&amp;default-tab=result`;
     },
   },
   watch: {},
