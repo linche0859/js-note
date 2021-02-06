@@ -10,6 +10,7 @@
 const path = require('path');
 
 module.exports = {
+  context: path.resolve(__dirname, 'src'),
   entry: './app.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -22,6 +23,7 @@ module.exports = {
 ### 屬性的解釋
 
 - `module.exports` - CommonJS 的模組化語法，意思是 `module.exports` 這個物件所帶值
+- `context` - 會取得專案中 `src` 資料夾的絕對路徑，讓讀取檔案的預設位置為 `src` 資料夾
 - `entry` - 代表著編譯前檔案的檔名，這邊使用 `./app.js`，代表執行 `webpack` 這個指令時，會用同個路徑底下的 `app.js` 來進行編譯
 - `output` - 代表編譯後輸出的檔名，這裡 `webpack` 分成 `path` 和 `filename` 兩個欄位做設定
 
@@ -30,7 +32,7 @@ module.exports = {
 
 - `watch` - 儲存時自動編譯
 
-## 使用 `webpack.config.js`
+## 使用特定的設定檔
 
 如果有多個 Webpack 設定檔，可以使用 `--config` 後面接設定檔檔名。
 
@@ -39,6 +41,31 @@ $ webpack --config webpack.production.js
 ```
 
 ## minify 編譯結果
+
+### 設定 `mode` 屬性
+
+直接於 `webpack.config.js` 中設定 `mode` 屬性：
+
+```js
+module.exports = {
+  mode: 'development',
+};
+```
+
+### 使用 `--mode` 參數
+
+在 `package.json` 的 `scripts` 中設定：
+
+```json
+{
+  "scripts": {
+    "start": "webpack --mode development",
+    "build": "webpack --mode production"
+  }
+}
+```
+
+### 使用 `cross-env` 套件
 
 1. 安裝 `cross-env`，並在 `package.json` 的 `scripts` 中加上：
 
