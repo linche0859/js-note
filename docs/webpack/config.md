@@ -40,7 +40,7 @@ module.exports = {
 $ webpack --config webpack.production.js
 ```
 
-## minify 編譯結果
+## 依環境變數打包程式
 
 ### 設定 `mode` 屬性
 
@@ -90,7 +90,7 @@ module.exports = {
 
 ---
 
-實際輸出的結果：
+minify 編譯結果：
 
 development
 
