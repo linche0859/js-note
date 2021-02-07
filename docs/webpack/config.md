@@ -86,6 +86,10 @@ module.exports = {
    };
    ```
 
+使用 `cross-env` 套件的優點，可以在 Node.js 的環境中，透過 `process.env.NODE_ENV` 取得環境變數。
+
+---
+
 實際輸出的結果：
 
 development

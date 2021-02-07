@@ -115,6 +115,7 @@ module.exports = {
           '/webpack/config',
           '/webpack/css-module',
           '/webpack/sass-module',
+          '/webpack/split-css',
           '/webpack/babel',
           '/webpack/optimization',
         ],
