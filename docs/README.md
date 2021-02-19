@@ -25,6 +25,7 @@
 - [RegExp](/ES6/regexp.md)
 - [File API](/ES6/file-api.md)
 - [Virtualized List](/ES6/virtualized-list.md)
+- [AbortController](/ES6/abortController.md)
 
 ## Functional Programming
 

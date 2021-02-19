@@ -65,6 +65,7 @@ module.exports = {
           '/ES6/regexp',
           '/ES6/file-api',
           '/ES6/virtualized-list',
+          '/ES6/abortController',
         ],
       },
       {
