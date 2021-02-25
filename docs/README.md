@@ -16,40 +16,40 @@
 
 ## ES6
 
-- [箭頭函式](/ES6/arrow-compare.md)
-- [String Method](/ES6/string-method.md)
-- [標籤樣板字面值](/ES6/template-literals.md)
-- [Fetch API 和 Axios](/ES6/request-comparison.md)
-- [非同步機制](/ES6/promise.md)
-- [透過 lazy loading 延遲載入圖片](/ES6/lazyload-image.md)
-- [RegExp](/ES6/regexp.md)
-- [File API](/ES6/file-api.md)
-- [Virtualized List](/ES6/virtualized-list.md)
-- [AbortController](/ES6/abortController.md)
+- [箭頭函式](/es6/arrow-compare.md)
+- [String Method](/es6/string-method.md)
+- [標籤樣板字面值](/es6/template-literals.md)
+- [Fetch API 和 Axios](/es6/request-comparison.md)
+- [非同步機制](/es6/promise.md)
+- [透過 lazy loading 延遲載入圖片](/es6/lazyload-image.md)
+- [RegExp](/es6/regexp.md)
+- [File API](/es6/file-api.md)
+- [Virtualized List](/es6/virtualized-list.md)
+- [AbortController](/es6/abortController.md)
 
 ## Functional Programming
 
-- [Pure Function](/Functional/pure.md)
-- [Recursions](/Functional/recursions.md)
-- [pipe 和 compose](/Functional/pipe.md)
-- [陣列運用](/Functional/array.md)
-- [Curry](/Functional/curry.md)
-- [Composition](/Functional/composition.md)
-- [Spread and Gather](/Functional/spread.md)
-- [Partial Application](/Functional/partial-application.md)
-- [常用的 Ramda API](/Functional/common.md)
-- [Pointfree](/Functional/pointfree.md)
-- [Functor](/Functional/functor.md)
-- [Applicative](/Functional/applicative.md)
-- [Monad](/Functional/monad.md)
+- [Pure Function](/functional/pure.md)
+- [Recursions](/functional/recursions.md)
+- [pipe 和 compose](/functional/pipe.md)
+- [陣列運用](/functional/array.md)
+- [Curry](/functional/curry.md)
+- [Composition](/functional/composition.md)
+- [Spread and Gather](/functional/spread.md)
+- [Partial Application](/functional/partial-application.md)
+- [常用的 Ramda API](/functional/common.md)
+- [Pointfree](/functional/point-free.md)
+- [Functor](/functional/functor.md)
+- [Applicative](/functional/applicative.md)
+- [Monad](/functional/monad.md)
 
 ## RxJS
 
-- [什麼是 Observable](/RxJS/observable-basic.md)
-- [Observable](/RxJS/observable.md)
-- [Creation Operator](/RxJS/creation-operator.md)
-- [Observable Operators & Marble Diagrams](/RxJS/observable-operators.md)
-- [簡易拖拉實作的 operator](/RxJS/drag-drop-implementation.md)
+- [什麼是 Observable](/rxjs/observable-basic.md)
+- [Observable](/rxjs/observable.md)
+- [Creation Operator](/rxjs/creation-operator.md)
+- [Observable Operators & Marble Diagrams](/rxjs/observable-operators.md)
+- [簡易拖拉實作的 operator](/rxjs/drag-drop-implementation.md)
 
 ## Gulp
 
