@@ -2,9 +2,9 @@
 
 要編譯 Sass 的檔案需要安裝 `sass-loader` 和 `node-sass` 套件，接著就可以開始寫 `xxx.scss` 或 `xxx.sass` 了，記得最後要把它們引入到主要的 `xxx.js` 中。
 
-`app.js`
-
 ```js
+// app.js
+
 const sassStyle = require('./style.sass');
 const scssStyle = require('./style.scss');
 
@@ -12,9 +12,9 @@ console.log('sassStyle', sassStyle);
 console.log('scssStyle', scssStyle);
 ```
 
-`style.sass`
-
 ```sass
+// style.sass
+
 h1
   .world
     font-weight: bold
@@ -46,6 +46,18 @@ module.exports = {
   },
 };
 ```
+
+:::tip 加入 `postcss-loader`
+
+如果要加入 `postcss-loader` 則 `use` 屬性可以改為：
+
+```js
+{
+  use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'];
+}
+```
+
+:::
 
 :::warning 注意
 

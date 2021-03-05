@@ -61,6 +61,9 @@ Babel 會盡量地更新現有的提案，並且去實做，放進相對應的 S
 
 依照 [官方文件](https://github.com/babel/babel-loader) 需安裝 `babel-loader`、`@babel/core`、`@babel/preset-env`。
 
+- `@babel/core` - 程式需要調用 Babel 的 API 進行編譯
+- `@babel/preset-env` - 可以使用最新版本的 JavaScript 做編譯
+
 並在 `webpack.config.js` 中加入新的規則：
 
 ```js
@@ -68,7 +71,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.m?js$/,
+        test: /\.js$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -108,6 +111,14 @@ module.exports = {
 
 - `modules` - 值為 `false` 時，表示不要將 ES module 中的 `import` 語法轉換成 `require`，因為使用 webpack 的 tree shaking，才可以讓 bundle size 變得更小
 
+或是可以將 `options` 屬性中的設定單獨寫在 `.babelrc` 檔案中：
+
+```json
+{
+  "presets": ["@babel/preset-env"]
+}
+```
+
 在 JavaScript 檔案中寫些 ES6 的語法：
 
 ```js
@@ -123,6 +134,41 @@ var fruits = ['apple', 'banana', 'orange'];
 var newFruits = [];
 newFruits.push.apply(newFruits, [].concat(fruits));
 ```
+
+## Proposal class properties
+
+針對 `class` 中方法的 `this` 自動綁定為 `class` 本身。可以參考 [官方文件](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties)。
+
+安裝完成後，記得到 `.babelrc` 中加入這個的 plugin：
+
+```json
+{
+  "plugins": ["@babel/plugin-proposal-class-properties"]
+}
+```
+
+```js
+class Main {
+  state = {
+    name: 'mike',
+  };
+  constructor() {
+    document.querySelector('a').addEventListener('click', this.log);
+  }
+  log = () => {
+    console.log(this.state.name);
+  };
+}
+
+const main = new Main();
+main.log(); // mike
+```
+
+:::warning 注意
+
+上面範例的寫法，並不是 `class` 的正確方式，是透過 `@babel/plugin-proposal-class-properties` 的套件才改為這樣使用。
+
+:::
 
 ## 參考
 

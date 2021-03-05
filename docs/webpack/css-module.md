@@ -98,6 +98,59 @@ module.exports = {
 }
 ```
 
+## PostCSS
+
+PostCSS 是一個使用 JavaScript 轉換 CSS 的工具，並搭配 autoprefixer 加入瀏覽器的 prefix，如：`-webkit-`、`-moz-` 等。
+
+```bash
+npm install postcss-loader autoprefixer --save-dev
+```
+
+在 `postcss.config.js` 中新增：
+
+```js
+module.exports = {
+  plugins: [require('autoprefixer')],
+};
+```
+
+新增 `.browserslistrc` 設定檔：
+
+```
+defaults
+not IE 11
+maintained node versions
+```
+
+`webpack.config.js` 設定檔中引用 `postcss-loader`：
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+          },
+        ],
+      },
+    ],
+  },
+};
+```
+
 ## 參考
 
 [設定 module 來編譯不同類型的檔案](https://ithelp.ithome.com.tw/articles/10193788)

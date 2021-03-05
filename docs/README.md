@@ -69,7 +69,9 @@
 - [CSS module](/webpack/css-module.md)
 - [Sass Module](/webpack/sass-module.md)
 - [獨立拆分 CSS](/webpack/split-css.md)
+- [搬移檔案](/webpack/file.md)
 - [Babel](/webpack/babel.md)
+- [分析路徑](/webpack/resolve.md)
 - [Optimization](/webpack/optimization.md)
 
 ## Plugin
