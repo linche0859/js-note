@@ -33,7 +33,6 @@ module.exports = {
 
 ```js
 // webpack.config.js
-
 module.exports = {
   entry: {
     index: './src/index.js',

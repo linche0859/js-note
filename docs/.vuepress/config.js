@@ -120,6 +120,8 @@ module.exports = {
           '/webpack/file',
           '/webpack/babel',
           '/webpack/resolve',
+          '/webpack/image',
+          '/webpack/provide',
           '/webpack/optimization',
         ],
       },

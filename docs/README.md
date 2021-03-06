@@ -72,6 +72,8 @@
 - [搬移檔案](/webpack/file.md)
 - [Babel](/webpack/babel.md)
 - [分析路徑](/webpack/resolve.md)
+- [圖片處理](/webpack/image.md)
+- [全局調用](/webpack/provide.md)
 - [Optimization](/webpack/optimization.md)
 
 ## Plugin

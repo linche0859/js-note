@@ -14,7 +14,6 @@ import Utility from '../../utilities/utility';
 
 ```js
 // webpack.config.js
-
 const path = require('path');
 
 module.exports = {
@@ -40,7 +39,6 @@ import Utility from 'Utilities/utility';
 
 ```js
 // webpack.config.js
-
 module.exports = {
   //...
   resolve: {
@@ -53,7 +51,6 @@ module.exports = {
 
 ```js
 // webpack.config.js
-
 const path = require('path');
 
 module.exports = {
@@ -75,6 +72,5 @@ module.exports = {
 
 // 原來需這樣引入
 // import Utility from './js/utility.js';
-
 import Utility from 'utility';
 ```

@@ -166,7 +166,7 @@ main.log(); // mike
 
 :::warning 注意
 
-上面範例的寫法，並不是 `class` 的正確方式，是透過 `@babel/plugin-proposal-class-properties` 的套件才改為這樣使用。
+上面範例的寫法，並不是 `class` 的正確使用方式，而是透過 `@babel/plugin-proposal-class-properties` 的套件才改為這樣使用。
 
 :::
 
