@@ -14,7 +14,7 @@
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^10.2.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "postcss": "^8.2.4",
     "postcss-import": "^14.0.0",
     "sass-loader": "^9.0.2",
